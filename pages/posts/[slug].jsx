@@ -1,13 +1,18 @@
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import Navbar from '../../components/nav'
+import PostSidebar from '../../components/BlogSidebar'
 
-const Post = ({posts}) => {
+const Post = ({posts,categories}) => {
   let post = posts[0].attributes
   return (
-  <>
-  <Navbar />
-  <div><h1>{post.title}</h1></div>
-  </>
+	<div className='bg-gray-50 min-h-screen'>
+    <Navbar />
+
+
+    <div className="w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 ">
+    <PostSidebar categories={categories}/>
+    </div>
+    </div>
   )
 }
 

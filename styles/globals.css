@@ -7,11 +7,14 @@
 
 @layer utilities {
   .md {
-    h1{@apply font-jost text-orange-400 text-h1 font-semibold}
-    h2{@apply font-jost text-orange-400 text-h2 font-semibold}
-    h3{@apply font-jost text-orange-400 text-h3 font-semibold}
-    p{@apply font-bitter text-gray-900 text-p1}
+    h1{@apply font-jost text-orange-400 text-h1 font-semibold }
+    h2{@apply font-jost text-orange-400 text-h2 font-semibold w-5/6 mx-auto}
+    h3{@apply font-jost text-orange-400 text-h3 font-semibold w-5/6 mx-auto}
+    p{@apply font-bitter text-gray-900 text-p2 leading-normal w-5/6  mx-auto}
     a{@apply hover:text-emerald-400}
+    blockquote{
+      @apply border-l-emerald-400 border-l-4 p-4
+    }
   }
 }
 

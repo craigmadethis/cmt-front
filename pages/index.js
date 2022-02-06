@@ -19,7 +19,7 @@ export default function Home({posts, categories}) {
 
     <div className="w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 ">
       <PostGrid posts={posts} />
-      <PostSidebar cats={categories} />
+      <PostSidebar categories={categories} />
     </div>
     <Footer />
 	</div>

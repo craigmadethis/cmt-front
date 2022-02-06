@@ -1,4 +1,5 @@
-const PostSidebar = ( {cats} ) => {
+const PostSidebar = ( {categories} ) => {
+  let cats = categories.map(cat => cat.attributes)
   return (
       <sidebar className="col-span-4">
       <div className="flex-col w-full justify-end text-right">

@@ -7,8 +7,8 @@ import Footer from '../../components/footer'
 import Image from 'next/image'
 
 
-const Post = ({posts,categories}) => {
-  let post = posts[0].attributes
+const Post = ({post,categories}) => {
+  const {attributes:{title: postTitle, createdAt: postCreated, content: postContent}} = post
 
   // const renderers = {paragraph: (paragraph) => {
   //   const { node } = paragraph;
@@ -23,6 +23,10 @@ const Post = ({posts,categories}) => {
   const renderers = {image: (image) =>{
     return <Image src={image.url} alt={image.alt} />
   }}
+
+  console.log(postCreated)
+  const postDate = new Date(postCreated.createdAt)
+  console.log(postDate.toLocaleDateString())
   
   return (
 	<div className='bg-gray-50 min-h-screen'>
@@ -32,10 +36,10 @@ const Post = ({posts,categories}) => {
     <div className="w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 ">
     {/* <div className="col-span-8 w-full prose prose-h1:md_h1"> */}
     <div className="col-span-8 md grid grid-cols-8">
-    <h1 className ="text-center py-4 col-span-8 mx-auto">{post.title}</h1>
-    <h3 className="col-span-8 mx-auto "><span className="text-gray-900">12/01/96</span></h3>
-    <div className="col-span-8">
-    <ReactMarkdown children={post.content} components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `http://localhost:1337${uri}` } remarkPlugins={remarkUnwrapImages} />
+    <h1 className ="text-center py-4 col-span-8 mx-auto">{postTitle}</h1>
+    <h3 className="col-span-8 mx-auto "><span className="text-gray-900 border-b-4 border-blue-400">{postDate.toLocaleDateString()}</span></h3>
+    <div className="col-span-8 mt-4">
+    <ReactMarkdown children={postContent} components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `http://localhost:1337${uri}` } remarkPlugins={remarkUnwrapImages} />
     </div>
     </div>
     <PostSidebar categories={categories}/>
@@ -61,6 +65,7 @@ export const getStaticProps = async ({params}) => {
           attributes{
             title
             content
+            createdAt
           }
         }
       },
@@ -76,7 +81,7 @@ export const getStaticProps = async ({params}) => {
   let {posts: {data: postsData}, categories:{data:catsData}} = data;
     return {
         props: {
-            posts: postsData,
+            post: postsData[0],
             categories: catsData,
         }
     }

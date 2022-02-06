@@ -22,6 +22,7 @@ export default function Home({posts, categories}) {
       <PostSidebar categories={categories} />
     </div>
     <Footer />
+    hello
 	</div>
   )
 }

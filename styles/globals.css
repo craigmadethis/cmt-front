@@ -5,5 +5,15 @@
 @tailwind components; 
 @tailwind utilities;
 
+@layer utilities {
+  .md {
+    h1{@apply font-jost text-orange-400 text-h1 font-semibold}
+    h2{@apply font-jost text-orange-400 text-h2 font-semibold}
+    h3{@apply font-jost text-orange-400 text-h3 font-semibold}
+    p{@apply font-bitter text-gray-900 text-p1}
+    a{@apply hover:text-emerald-400}
+  }
+}
+
 
 

@@ -1,15 +1,27 @@
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import Navbar from '../../components/nav'
 import PostSidebar from '../../components/BlogSidebar'
+import ReactMarkdown from 'react-markdown'
+
 
 const Post = ({posts,categories}) => {
   let post = posts[0].attributes
+  let markdown = `
+  # hello this is a title. 
+  hellooooo
+
+  wow
+  `
   return (
 	<div className='bg-gray-50 min-h-screen'>
     <Navbar />
 
 
     <div className="w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 ">
+    {/* <div className="col-span-8 w-full prose prose-h1:md_h1"> */}
+    <div className="col-span-8 w-full md">
+    <ReactMarkdown children={markdown}/>
+    </div>
     <PostSidebar categories={categories}/>
     </div>
     </div>

@@ -26,15 +26,24 @@ export const getStaticProps = async ({params}) => {
         data{
           attributes{
             title
+            content
           }
         }
-      } 
+      },
+      categories {
+        data {
+          attributes {
+            category
+          }
+        }
+      }
     }`), 
     variables:{slug:`${slug}`}})
-  let {posts: {data: postsData}} = data;
+  let {posts: {data: postsData}, categories:{data:catsData}} = data;
     return {
         props: {
             posts: postsData,
+            categories: catsData,
         }
     }
 }

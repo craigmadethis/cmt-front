@@ -17,6 +17,7 @@ export default function Home({posts, categories}) {
     {/* lets make a grid */}
 
     <div className="w-full px-4 mb-auto md:px-0 md:w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6  justify-between ">
+    hello
       <PostGrid posts={posts} />
       <PostSidebar categories={categories} />
     </div>

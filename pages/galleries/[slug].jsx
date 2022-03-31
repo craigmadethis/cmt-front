@@ -1,4 +1,3 @@
-import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import Navbar from '../../components/nav'
 import PostSidebar from '../../components/BlogSidebar'
 import ReactMarkdown from 'react-markdown'
@@ -8,6 +7,7 @@ import Image from 'next/image'
 import reactMarkdown from 'react-markdown'
 import {LightgalleryItem} from "react-lightgallery"
 import "lightgallery.js/dist/css/lightgallery.css";
+import InitClient from "../../lib/client"
 
 const Post = ({post, galleries}) => {
   // console.log(galleries.attributes.images.data)
@@ -80,10 +80,7 @@ export default Post;
 export const getStaticProps = async ({params}) => {
   // this is whatever the page is so here it's [slug], if it was [id] then {id} = params https://nextjs.org/docs/api-reference/data-fetching/get-static-props
   let {slug} = params;
-    const client = new ApolloClient({
-        uri: 'http://localhost:1337/graphql',
-        cache: new InMemoryCache(),
-    });
+  const client = InitClient()
   const {data} = await client.query({
     query: gql(`
     query($slug: String!){
@@ -121,10 +118,7 @@ export const getStaticProps = async ({params}) => {
 }
 
 export async function getStaticPaths() {
-    const client = new ApolloClient({
-        uri: 'http://localhost:1337/graphql',
-        cache: new InMemoryCache(),
-    });
+  const client = InitClient()
   const {data} = await client.query({
     query: gql`
     query {

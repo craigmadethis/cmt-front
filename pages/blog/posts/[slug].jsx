@@ -1,14 +1,11 @@
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
-import Navbar from '../../components/nav'
-import PostSidebar from '../../components/BlogSidebar'
-import {ProseLayout} from '../../components/layouts'
+import {ProseLayout} from '../../../components/layouts'
 import ReactMarkdown from 'react-markdown'
 import remarkUnwrapImages from 'remark-unwrap-images'
-import Footer from '../../components/footer'
 import Image from 'next/image'
 import {LightgalleryItem} from "react-lightgallery"
-import client from "../../lib/client"
-import { POST_BY_SLUG, POST_SLUGS} from '../../lib/queries'
+import client from "../../../lib/client"
+import { POST_BY_SLUG, POST_SLUGS} from '../../../lib/queries'
 
 
 
@@ -106,7 +103,7 @@ export async function getStaticPaths() {
   )
   let {posts: {data: postsData}} = data;
   return {
-    paths: postsData.map((post) => `/posts/${post.attributes.slug}`),
+    paths: postsData.map((post) => `/blog/posts/${post.attributes.slug}`),
     fallback: true // false or 'blocking'
   };
 }

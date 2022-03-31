@@ -5,6 +5,7 @@ import Footer from '../components/footer'
 import PostSidebar from '../components/BlogSidebar'
 import PostGrid from '../components/postgrid'
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
+import InitClient from '../lib/client'
 
 export default function Home({posts, categories}) {
   return (
@@ -22,10 +23,11 @@ export default function Home({posts, categories}) {
 }
 
 export const getStaticProps = async ({params}) => {
-    const client = new ApolloClient({
-        uri: 'http://localhost:1337/graphql',
-        cache: new InMemoryCache(),
-    });
+    // const client = new ApolloClient({
+    //     uri: 'http://localhost:1337/graphql',
+    //     cache: new InMemoryCache(),
+    // });
+  const client = InitClient()
   const {data} = await client.query({
     query: gql`
     query {

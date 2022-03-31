@@ -7,7 +7,6 @@ import PostGrid from '../components/postgrid'
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 
 export default function Home({posts, categories}) {
-  posts.forEach(post => console.log(post.attributes.slug))
   return (
 	<div className='bg-gray-50 min-h-screen'>
       <Head> <title>craigmadethis</title>
@@ -17,12 +16,11 @@ export default function Home({posts, categories}) {
     <Navbar />
     {/* lets make a grid */}
 
-    <div className="w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 ">
+    <div className="w-full px-4 md:px-0 md:w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6  justify-between ">
       <PostGrid posts={posts} />
       <PostSidebar categories={categories} />
     </div>
     <Footer />
-    hello
 	</div>
   )
 }
@@ -35,12 +33,22 @@ export const getStaticProps = async ({params}) => {
   const {data} = await client.query({
     query: gql`
     query {
-      posts{
+      posts(pagination:{pageSize:3, page:1}, sort:"createdAt"){
         data{
           attributes{
             title
             description
             slug
+            createdAt
+            updatedAt
+            cover {
+              data {
+                attributes {
+                  name
+                  url
+                }
+              }
+            }
           }
         }
       }, 

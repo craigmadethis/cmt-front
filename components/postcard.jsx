@@ -11,12 +11,12 @@ const PostCard = ({post}) => {
 
 
   return (
-    <div key={postSlug} className="mt-2 mr-4 col-span-4 border-b-4 border-blue-400 flex flex-l flex-col justify-between">
+    <div key={postSlug} className="mr-4 mb-2 md:mb-4 col-span-4 border-b-4 border-blue-400 flex flex-l flex-col justify-between">
     <div>
       <h1 className="text-h3 md:text-h2 font-jost font-semibold hover:text-blue-400 w-full"><Link href='/posts/[slug]' as={`/posts/${postSlug}`}>{postTitle}</Link></h1>
     </div>
-      <div className='relative w-full h-32 md:h-64 mt-2 place-self-center'>
-        <Image src={`http://localhost:1337${coverUrl}`} layout='fill' objectFit='cover'/>
+      <div className='relative aspect-square w-full max-h-64 mt-2 place-self-center '>
+        <Image src={`http://localhost:1337${coverUrl}`} layout='fill' objectFit='cover' />
       </div>
       {/* <div className="w-5/6 bg-emerald-400 h-[200px]"> an image </div> */}
     <div>

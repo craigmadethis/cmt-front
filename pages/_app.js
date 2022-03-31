@@ -1,9 +1,15 @@
 import '../styles/globals.css'
-import 'lightgallery.js/dist/css/lightgallery.css'
+import {LightgalleryProvider} from "react-lightgallery"
+import "lightgallery.js/dist/css/lightgallery.css"
 
 function MyApp({ Component, pageProps }) {
   return (
+    <LightgalleryProvider 
+    lightgallerySettings={ { 'download':false } }
+    >
     <Component {...pageProps} />
+    </LightgalleryProvider>
+
   )
 }
 

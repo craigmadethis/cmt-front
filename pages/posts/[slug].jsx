@@ -6,6 +6,8 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import Footer from '../../components/footer'
 import Image from 'next/image'
 import reactMarkdown from 'react-markdown'
+import {LightgalleryItem} from "react-lightgallery"
+
 
 
 const Post = ({post,categories}) => {
@@ -14,31 +16,37 @@ const Post = ({post,categories}) => {
  var galleryImages = postGallery.data.attributes.images.data
 
 
-  // const renderers = {paragraph: (paragraph) => {
-  //   const { node } = paragraph;
-  //   if (node.children[0].type === "image") {
-  //     const image = node.children[0];
-  //     return <div className='w-full'><Image src={image.url} alt={image.alt}  /></div>;
-  //   }
-  //   return <p className='w-4/6'>{paragraph.children}</p>;
-  // },
-  // }
-  
   const renderers = {
-    img: (image) => (image.title) ? (
-      <div>
-      <div className='mx-auto w-full max-w-6xl aspect-[4/3] relative '>
-        <Image src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
-      </div>
-      <p className='w-4/6 text-center'>
-      {image.title}
-      </p>
-      </div>
-    ) : (
-      <div className='mx-auto w-full aspect-[4/3] relative'>
-      <Image src={image.src} alt={image.alt} layout='fill' objectFit='contain' quality='50' />
-      </div>
-    )
+    img: (image) =>{ 
+      if(image.title) { 
+        return (
+          <div>
+            <div className='mx-auto w-full max-w-6xl aspect-[4/3] relative '>
+              <LightgalleryItem src={image.src} group="page">
+                <a className=''>
+                  <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
+                </a>
+              </LightgalleryItem>
+            </div>
+            <p className='w-4/6 text-center'>
+              {image.title}
+            </p>
+          </div>
+        ) 
+      }
+      else {
+        return (
+          <div>
+            <div className='mx-auto w-full max-w-6xl aspect-[4/3] relative '>
+              <LightgalleryItem src={image.src} group="page">
+                <a className=''>
+                  <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
+                </a>
+              </LightgalleryItem>
+            </div>
+          </div>
+        )}
+    }
   }
 
   // console.log(postCreated)

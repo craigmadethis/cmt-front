@@ -19,6 +19,21 @@
       @apply border-l-emerald-400 w-4/6 mx-auto  md:px-0 border-l-4 my-4
     }
   }
+  @variants responsive {
+    .masonry-3-col {
+      column-count:3;
+      column-gap: 0.5em; 
+    }
+    .masonry-2-col {
+      column-count: 2;
+      column-gap: 0.5em;
+    }
+    .masonry-1-col {
+      column-count: 1;
+      column-gap: 0.5em;
+    }
+  }
+
 }
 
 

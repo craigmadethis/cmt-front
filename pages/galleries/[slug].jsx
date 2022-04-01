@@ -13,7 +13,6 @@ const Post = ({post, galleries}) => {
   // console.log(galleries.attributes.images.data)
   const imageData = galleries.attributes.images.data
 
-  console.log(imageData)
   const PhotoItem = ( {image}) => (
     <div className='w-full '>
     <LightgalleryItem  src={image} thumb={image} group='all'>
@@ -21,29 +20,6 @@ const Post = ({post, galleries}) => {
     </LightgalleryItem>
     </div>
   );
-  
-  // const renderers = {
-  //   img: (image) => (image.title) ? (
-  //     <div>
-  //     <div className='mx-auto w-full max-w-6xl aspect-[4/3] relative '>
-  //       <Image src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
-  //     </div>
-  //     <p className='w-4/6 text-center'>
-  //     {image.title}
-  //     </p>
-  //     </div>
-  //   ) : (
-  //     <div className='mx-auto w-full aspect-[4/3] relative'>
-  //     <Image src={image.src} alt={image.alt} layout='fill' objectFit='contain' quality='50' />
-  //     </div>
-  //   )
-  // }
-
-  // console.log(postCreated)
-  // const postDate = new Date(postCreated)
-  // console.log(postDate)
-  // console.log(postCreated.createdAt.toLocaleDateString('en-GB', {year: 'long', month: 'long', day: 'numeric'}))
-  // console.log(navigator.languages)
   
   return (
 	<div className='bg-gray-50 min-h-screen'>

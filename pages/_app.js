@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import '../styles/globals.css'
+// https://sachinchoolur.github.io/lightgallery.js/
 import {LightgalleryProvider} from "react-lightgallery"
 import "lightgallery.js/dist/css/lightgallery.css"
 

@@ -1,4 +1,4 @@
-import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
+import {gql} from '@apollo/client'
 import {ProseLayout} from '../../../components/layouts'
 import ReactMarkdown from 'react-markdown'
 import remarkUnwrapImages from 'remark-unwrap-images'

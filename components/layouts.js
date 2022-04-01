@@ -18,10 +18,10 @@ export const SidebarLayout = (props) => {
 export const ProseLayout = (props) => {
 
   return (
-	<div className='bg-gray-50 min-h-screen'>
+	<div className='bg-gray-50 min-h-screen flex flex-col min-h-screen justify-between'>
     <Navbar />
 
-    <div className="w-full px-2 md:px-0 md:w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 ">
+    <div className="w-full px-2 md:px-0 md:w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 mb-auto ">
     <div className="col-span-12 grid grid-cols-8 border-b-2 border-gray-400">
     {props.children}
 

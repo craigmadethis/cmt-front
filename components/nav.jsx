@@ -6,7 +6,7 @@ function Navbar() {
     <div className="flex flex-col text-h2 font-semibold font-jost">
     <h1 className="hover:text-orange-400" ><Link href='/blog/1'>photo</Link></h1>
     <h1 className="hover:text-orange-400"> <Link className="hover:text-orange-400" href='/blog/1'>blog</Link></h1>
-    <h1 className="hover:text-orange-400"> <Link className="hover:text-orange-400" href='/blog/1'>me</Link></h1>
+    <h1 className="hover:text-orange-400"> <Link className="hover:text-orange-400" href='/me'>me</Link></h1>
     </div>
     </div>
 	  <div className='text-d3 md:text-d2 font-bold font-jost whitespace-pre-wrap text-right w-2/3 hover:text-emerald-400 '>

@@ -7,7 +7,6 @@ import client from "../../lib/client"
 import { POST_BY_SLUG, POST_SLUGS} from "../../lib/queries"
 
 const Me = (props) => {
-  console.log("hello")
 
   return (
 

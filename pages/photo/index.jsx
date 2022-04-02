@@ -8,7 +8,6 @@ import { POST_BY_SLUG, POST_SLUGS, GET_GALLERY_IMAGES} from '../../lib/queries'
 import {LightgalleryItem} from "react-lightgallery"
 
 const Me = ({gallery}) => {
-  console.log(gallery)
   let {attributes: {images: {data: allImages}, title, description}} = gallery
 
   return (

@@ -1,4 +1,4 @@
-import {gql} from "@apollo/client"
+import {ApolloClient, InMemoryCache, gql} from "@apollo/client"
 import {ProseLayout} from "../../../components/layouts"
 import ReactMarkdown from "react-markdown"
 import remarkUnwrapImages from "remark-unwrap-images"
@@ -6,13 +6,13 @@ import Image from "next/image"
 import {LightgalleryItem} from "react-lightgallery"
 import client from "../../../lib/client"
 import { POST_BY_SLUG, POST_SLUGS} from "../../../lib/queries"
+import {useRouter} from 'next/router'
 
 
 
 const Post = ({post,categories}) => {
   const {attributes:{title: postTitle, createdAt: postCreated, description: postDescription, content: postContent, gallery: postGallery} } = post
 
-  console.log(post)
  // var galleryImages = postGallery.data.attributes.images.data
 
 
@@ -55,6 +55,11 @@ const Post = ({post,categories}) => {
   // console.log(postCreated.createdAt.toLocaleDateString('en-GB', {year: 'long', month: 'long', day: 'numeric'}))
   // console.log(navigator.languages)
   
+  const router = useRouter()
+  
+  if (router.isFallback) {
+    return <div> Loading...</div>
+  }
   return (
     <ProseLayout>
 
@@ -63,7 +68,7 @@ const Post = ({post,categories}) => {
     <h3 className="col-span-8 mx-auto text-center text-p3 md:text-p2 font-jost font-semibold"><span className="text-gray-900 border-b-4 border-blue-400">{postDate.toLocaleDateString('en-GB')}</span></h3>
     <div className="col-span-8 text-center font-bitter text-gray-900 text-p3 md:text-p2 leading-normal w-5/6  mx-auto py-4">{postDescription}</div>
     <div className="md col-span-8 my-4">
-      <ReactMarkdown  components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `http://localhost:1337${uri}` } remarkPlugins={[remarkUnwrapImages]}>
+      <ReactMarkdown  components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `${uri}` } remarkPlugins={[remarkUnwrapImages]}>
       {postContent}
     </ReactMarkdown>
     </div>
@@ -79,6 +84,10 @@ export const getStaticProps = async ({params}) => {
   // this is whatever the page is so here it's [slug], if it was [id] then {id} = params https://nextjs.org/docs/api-reference/data-fetching/get-static-props
   let {slug} = params;
 
+  const client = new ApolloClient({
+    uri: 'https://cmt-back.herokuapp.com/graphql',
+    cache: new InMemoryCache(),
+  });
 
   const {data} = await client.query(
     {
@@ -92,12 +101,17 @@ export const getStaticProps = async ({params}) => {
         props: {
             post: postsData[0],
             categories: catsData,
-        }
+        },
+      revalidate: 1
     }
 }
 
 export async function getStaticPaths() {
 
+  const client = new ApolloClient({
+    uri: 'https://cmt-back.herokuapp.com/graphql',
+    cache: new InMemoryCache(),
+  });
   
   const {data}= await client.query(
     {
@@ -105,8 +119,9 @@ export async function getStaticPaths() {
     }
   )
   let {posts: {data: postsData}} = data;
+  console.log(postsData)
   return {
     paths: postsData.map((post) => `/blog/post/${post.attributes.slug}`),
-    fallback: true // false or 'blocking'
+    fallback: false // false or 'blocking'
   };
 }

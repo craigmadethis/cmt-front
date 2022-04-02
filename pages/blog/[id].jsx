@@ -8,11 +8,6 @@ import {POST_LIST, PAGE_DATA} from '../../lib/queries'
 
 
 export default function Home({posts, categories}) {
-  console.log(postperpage)
-  // let genPaths = []
-  // for (let i=1; i<=totalPages; i++){
-  //   genPaths.push(`/blog/${i}`)
-  // }
 
 return  (
     <SidebarLayout categories={categories}>
@@ -23,7 +18,9 @@ return  (
 }
 
 export const getStaticProps = async ({params}) => {
-  let {id} = params
+
+  // let {id} = params
+  let id = 1
   const {data} = await client.query(
     {
     query: gql(POST_LIST),
@@ -49,16 +46,13 @@ export const getStaticPaths = async () => {
   let {posts:{meta: {pagination: {total: totalPages}}}} = data
 
   let pageIds = []
-  for(let i=1; i<=totalPages; i++){
+  for(let i=1; i<=1; i++){
     pageIds.push(`/blog/${i}`)
   }
-
 
   return {
     // paths: ['/blog/1', '/blog/2'],
     paths: pageIds,
-    fallback:true
+    fallback:false,
   }
-
-
 }

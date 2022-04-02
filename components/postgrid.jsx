@@ -1,19 +1,28 @@
 import PostCard from './postcard'
 const PostGrid = ({posts, full }) => {
 
-  if (full) {
+  if (posts == null) {
     return (
-      <main className="col-span-8 md:col-span-9 grid grid-cols-8 md:grid-cols-12 items-stretch" >
-      {posts.map(post => <PostCard post={post} key={post} />)} 
-      </main>
+      <div>
+      fuk
+      </div>
     )
   }
   else {
-    return(
-      <main className="col-span-8 md:col-span-9 grid grid-cols-4 md:grid-cols-8 items-stretch" >
-      {posts.map(post => <PostCard post={post} key={post} />)} 
-      </main>
-    )
+    if (full) {
+      return (
+        <main className="col-span-8 md:col-span-9 grid grid-cols-8 md:grid-cols-12 items-stretch" >
+        {posts.map(post => <PostCard post={post} key={post} />)} 
+        </main>
+      )
+    }
+    else {
+      return(
+        <main className="col-span-8 md:col-span-9 grid grid-cols-4 md:grid-cols-8 items-stretch" >
+        {posts.map(post => <PostCard post={post} key={post} />)} 
+        </main>
+      )
+    }
   }
 }
 

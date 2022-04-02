@@ -5,19 +5,19 @@ module.exports = {
   ],
   theme: {
     fontFamily:{
-      'jost':['Jost'],
-      'bitter':['Bitter'],
+      "jost":["Jost"],
+      "bitter":["Bitter"],
     },
     fontSize: {
-      'p3': ['14px', {lineHeight:'14px',letterSpacing:'-0.025em'}],
-      'p2': ['18px', {lineHeight:'18px',letterSpacing:'-0.025em'}],
-      'p1': ['24px', {lineHeight:'24px',letterSpacing:'-0.025em'}],
-      'h3': ['24px', {lineHeight:'24px',letterSpacing:'-0.075em'}],
-      'h2': ['36px', {lineHeight:'36px',letterSpacing:'-0.075em'}],
-      'h1': ['52px', {lineHeight:'48px',letterSpacing:'-0.075em'}],
-      'd3': ['52px', {lineHeight:'38px',letterSpacing:'-0.12em'}],
-      'd2': ['72px', {lineHeight:'52px',letterSpacing:'-0.12em'}],
-      'd1': ['144px', {lineHeight:'112px',letterSpacing:'-0.12em'}],
+      "p3": ["14px", {lineHeight:"14px",letterSpacing:"-0.025em"}],
+      "p2": ["18px", {lineHeight:"18px",letterSpacing:"-0.025em"}],
+      "p1": ["24px", {lineHeight:"24px",letterSpacing:"-0.025em"}],
+      "h3": ["24px", {lineHeight:"24px",letterSpacing:"-0.075em"}],
+      "h2": ["36px", {lineHeight:"36px",letterSpacing:"-0.075em"}],
+      "h1": ["52px", {lineHeight:"48px",letterSpacing:"-0.075em"}],
+      "d3": ["52px", {lineHeight:"38px",letterSpacing:"-0.12em"}],
+      "d2": ["72px", {lineHeight:"52px",letterSpacing:"-0.12em"}],
+      "d1": ["144px", {lineHeight:"112px",letterSpacing:"-0.12em"}],
     },
     colors: {
       "blue": {
@@ -73,6 +73,6 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require('@tailwindcss/typography')
+    require("@tailwindcss/typography")
   ],
 }

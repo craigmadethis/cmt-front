@@ -1,17 +1,18 @@
-import {gql} from '@apollo/client'
-import {ProseLayout} from '../../../components/layouts'
-import ReactMarkdown from 'react-markdown'
-import remarkUnwrapImages from 'remark-unwrap-images'
-import Image from 'next/image'
+import {gql} from "@apollo/client"
+import {ProseLayout} from "../../../components/layouts"
+import ReactMarkdown from "react-markdown"
+import remarkUnwrapImages from "remark-unwrap-images"
+import Image from "next/image"
 import {LightgalleryItem} from "react-lightgallery"
 import client from "../../../lib/client"
-import { POST_BY_SLUG, POST_SLUGS} from '../../../lib/queries'
+import { POST_BY_SLUG, POST_SLUGS} from "../../../lib/queries"
 
 
 
 const Post = ({post,categories}) => {
   const {attributes:{title: postTitle, createdAt: postCreated, description: postDescription, content: postContent, gallery: postGallery} } = post
 
+  console.log(post)
  // var galleryImages = postGallery.data.attributes.images.data
 
 
@@ -20,10 +21,10 @@ const Post = ({post,categories}) => {
       if(image.title) { 
         return (
           <div>
-            <div className='mx-auto w-full max-w-6xl aspect-[4/3] relative '>
+            <div className="mx-auto w-full max-w-6xl aspect-[4/3] relative ">
               <LightgalleryItem src={image.src} group="page">
-                <a className=''>
-                  <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
+                <a className="">
+                  <Image className="img-responsive" src={image.src} alt={image.alt} layout="fill" objectFit="contain"  quality="50" />
                 </a>
               </LightgalleryItem>
             </div>

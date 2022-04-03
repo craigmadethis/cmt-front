@@ -6,6 +6,7 @@ import PostSidebar from '../../components/BlogSidebar'
 import PostGrid from '../../components/postgrid'
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import {SidebarLayout} from '../../components/layouts'
+import client from '../../lib/client'
 
 export default function Home({posts, categories}) {
   // posts.forEach(post => console.log(post.attributes.cover.data.attributes.url))
@@ -24,10 +25,6 @@ export default function Home({posts, categories}) {
 
 export const getStaticProps = async ({params}) => {
   let {slug} = params;
-    const client = new ApolloClient({
-        uri: 'http://localhost:1337/graphql',
-        cache: new InMemoryCache(),
-    });
   const {data} = await client.query({
     query: gql`
     query ($slug: String!){
@@ -77,10 +74,6 @@ export const getStaticProps = async ({params}) => {
 
 
 export async function getStaticPaths() {
-    const client = new ApolloClient({
-        uri: 'http://localhost:1337/graphql',
-        cache: new InMemoryCache(),
-    });
   const {data} = await client.query({
     query: gql`
     query {

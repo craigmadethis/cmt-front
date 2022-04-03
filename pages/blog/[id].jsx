@@ -8,7 +8,6 @@ import {POST_LIST, PAGE_DATA} from '../../lib/queries'
 
 
 export default function Home({posts, categories}) {
-  console.log(postperpage)
   // let genPaths = []
   // for (let i=1; i<=totalPages; i++){
   //   genPaths.push(`/blog/${i}`)

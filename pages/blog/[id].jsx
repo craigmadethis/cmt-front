@@ -18,7 +18,6 @@ return  (
 
 export const getStaticProps = async ({params}) => {
   let {id} = params
-  console.log(id)
   const {data} = await client.query(
     {
     query: gql(POST_LIST),

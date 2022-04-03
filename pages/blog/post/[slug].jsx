@@ -20,7 +20,7 @@ const Post = ({post,categories}) => {
       if(image.title) { 
         return (
           <div>
-            <div className='mx-auto w-full max-w-4xl aspect-[4/3] relative '>
+            <div className='mx-auto w-5/6 max-w-6xl aspect-[4/3] relative '>
               <LightgalleryItem src={image.src} group="page">
                 <a className=''>
                   <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />

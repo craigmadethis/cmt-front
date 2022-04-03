@@ -103,8 +103,7 @@ export async function getStaticPaths() {
       query: gql(POST_SLUGS)
     }
   )
-  let {posts: {data: postsData}} = data;
-  console.log(postsData)
+  let {posts: {data: postsData}} = await data;
   return {
     paths: postsData.map((post) => `/blog/post/${post.attributes.slug}`),
     fallback: false // false or 'blocking'

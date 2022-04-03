@@ -85,7 +85,7 @@ export async function getStaticPaths() {
         }
       } 
     }`})
-  let {categories: {data: catData}}=data;
+  let {categories: {data: catData}}= await data;
   console.log(catData)
   return {
     paths: catData.map((cat) => `/categories/${cat.attributes.category}`),

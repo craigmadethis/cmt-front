@@ -1,6 +1,6 @@
 // import Image from 'next/image'
 import {SidebarLayout} from '../../components/layouts'
-import {gql} from '@apollo/client'
+import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import PostGrid from '../../components/postgrid'
 import client from '../../lib/client'
 import postperpage from '../../lib/postperpage'
@@ -34,14 +34,20 @@ export const getStaticProps = async ({params}) => {
 }
 
 export const getStaticPaths = async () => {
+
+  const client = new ApolloClient({
+    uri: 'https://cmt-back.herokuapp.com/graphql',
+    cache: new InMemoryCache(),
+  });
+
   const {data} = await client.query(
     {
     query: gql(PAGE_DATA),
     variables:{size:1},
     }
   )
-  // let {posts:{meta: {pagination: {total: totalPages}}}} = await data
-  console.log(data)
+  let {posts:{meta: {pagination: {total: totalPages}}}} = await data
+  console.log(totalPages)
 
   // let pageIds = []
   // for(let i=1; i<=totalPages; i++){

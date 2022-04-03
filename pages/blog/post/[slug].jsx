@@ -96,14 +96,14 @@ export const getStaticProps = async ({params}) => {
 }
 
 export async function getStaticPaths() {
-
-  
   const {data}= await client.query(
     {
       query: gql(POST_SLUGS)
     }
   )
+
   let {posts: {data: postsData}} = await data;
+  postsData.forEach((post) => console.log(post.attributes.slug))
   return {
     paths: postsData.map((post) => `/blog/post/${post.attributes.slug}`),
     fallback: false // false or 'blocking'

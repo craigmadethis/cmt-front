@@ -74,6 +74,10 @@ export const getStaticProps = async ({params}) => {
 
 
 export async function getStaticPaths() {
+  const client = new ApolloClient({
+    uri: 'https://cmt-back.herokuapp.com/graphql',
+    cache: new InMemoryCache(),
+  });
   const {data} = await client.query({
     query: gql`
     query {

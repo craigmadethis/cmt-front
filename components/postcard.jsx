@@ -7,7 +7,8 @@ const PostCard = ({post}) => {
 
 
   let {attributes: {title: postTitle, description:postDescription, slug:postSlug, createdAt:postCreated, updatedAt: postUpdated, cover: {data: {attributes: {name:coverName, url:coverUrl}}}}} = post
-  console.log(postTitle, postDescription, postCreated, coverName, coverUrl)
+
+  console.log(postTitle, postDescription)
 
 
 

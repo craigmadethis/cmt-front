@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export const SidebarLayout = (props) => {
  return( 
-   <div className='bg-gray-50 min-h-screen flex flex-col h-screen justify-between'>
+   <div className='bg-gray-50  flex flex-col h-full min-h-screen justify-between'>
     <Navbar />
     <div className="w-full px-4 mb-auto md:px-0 md:w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6  justify-between ">
     {props.children}

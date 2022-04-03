@@ -32,7 +32,7 @@ export const getStaticProps = async ({params}) => {
     }
   )
 
-  let {galleries: {data: galleryData}} = data;
+  let {galleries: {data: galleryData}} = await data;
     return {
         props: {
             gallery: galleryData[0],

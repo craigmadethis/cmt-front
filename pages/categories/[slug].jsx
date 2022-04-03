@@ -63,7 +63,7 @@ export const getStaticProps = async ({params}) => {
         }
     }`, 
     variables:{slug:`${slug}`}})
-  let {posts: {data: postsData}, categories: {data: catsData}} = data;
+  let {posts: {data: postsData}, categories: {data: catsData}} = await data;
     return {
         props: {
             posts: postsData,

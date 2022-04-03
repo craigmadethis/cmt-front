@@ -24,7 +24,7 @@ export const getStaticProps = async ({params}) => {
     variables:{pageNum:parseInt(id), size:postperpage}
     }
   )
-  let {posts: {data: postsData}, categories: {data: catsData}} = data;
+  let {posts: {data: postsData}, categories: {data: catsData}} = await data;
     return {
         props: {
             posts: postsData,
@@ -40,7 +40,7 @@ export const getStaticPaths = async () => {
     variables:{size:postperpage}
     }
   )
-  let {posts:{meta: {pagination: {total: totalPages}}}} = data
+  let {posts:{meta: {pagination: {total: totalPages}}}} = await data
 
   let pageIds = []
   for(let i=1; i<=totalPages; i++){

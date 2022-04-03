@@ -1,13 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 import TruncateMarkup from 'react-truncate-markup'; // recommend
-const loader = (src) => {
-  return `${src}`
-}
+
+
 const PostCard = ({post}) => {
 
 
   let {attributes: {title: postTitle, description:postDescription, slug:postSlug, createdAt:postCreated, updatedAt: postUpdated, cover: {data: {attributes: {name:coverName, url:coverUrl}}}}} = post
+
+
 
   const postDate = new Date(postCreated)
 

@@ -1,9 +1,11 @@
 import PostCard from './postcard'
 const PostGrid = ({posts, full }) => {
 
+  consoel.log(posts)
   if (full) {
     return (
       <main className="col-span-8 md:col-span-9 grid grid-cols-8 md:grid-cols-12 items-stretch" >
+      
       {posts.map(post => <PostCard post={post} key={post} />)} 
       </main>
     )

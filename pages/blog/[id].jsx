@@ -37,7 +37,7 @@ export const getStaticPaths = async () => {
   const {data} = await client.query(
     {
     query: gql(PAGE_DATA),
-    variables:{size:postperpage}
+    variables:{size:1},
     }
   )
   let {posts:{meta: {pagination: {total: totalPages}}}} = await data

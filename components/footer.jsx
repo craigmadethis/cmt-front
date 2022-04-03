@@ -24,7 +24,7 @@ const Footer = () => {
     
     <div className='md:w-1/2 mx-auto md:flex md:justify-around'>
 
-    <div className='md:w-1/2 text-center md:text-left mx-4 '>
+    <div className='md:w-1/2 text-center md:text-left mx-4 mb-4 md:mb-0'>
     <h1 className='pb-2 font-jost font-semibold'>Site:</h1>
     <ul>
     <li>blog</li>

@@ -9,7 +9,6 @@ import {LightgalleryItem} from "react-lightgallery"
 
 const Me = ({gallery}) => {
   let {attributes: {images: {data: allImages}, title, description}} = gallery
-  console.log(allImages)
 
   return (
 

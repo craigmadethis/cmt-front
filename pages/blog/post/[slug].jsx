@@ -106,6 +106,6 @@ export async function getStaticPaths() {
   let {posts: {data: postsData}} = data;
   return {
     paths: postsData.map((post) => `/blog/post/${post.attributes.slug}`),
-    fallback: true // false or 'blocking'
+    fallback: false // false or 'blocking'
   };
 }

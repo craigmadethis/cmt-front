@@ -86,9 +86,8 @@ export async function getStaticPaths() {
       } 
     }`})
   let {categories: {data: catData}}=data;
-  console.log(catData)
   return {
     paths: catData.map((cat) => `/categories/${cat.attributes.category}`),
-    fallback: true // false or 'blocking'
+    fallback: false // false or 'blocking'
   };
 }

@@ -52,7 +52,7 @@ export const GalleryLayout = (props) => {
     <p className='text-center'> {description}</p>
           <div className='masonry-1-col md:masonry-2-col'>
     {allImages.map(({attributes: {url, caption, alternativeText: alt}}) => 
-            <div className='mx-auto w-full my-4 aspect-[4/3] relative break-inside-avoid '>
+            <div className='mx-auto w-full my-4 aspect-[4/3] relative break-inside-avoid ' key={url}>
               <LightgalleryItem src={`${url}`} group="page" subHtml={caption}>
       <a>
                   <Image className="img-responsive" src={`${url}`} alt={alt} layout='fill' objectFit='contain'  quality='50' />

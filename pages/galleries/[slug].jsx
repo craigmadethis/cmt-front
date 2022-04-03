@@ -7,7 +7,8 @@ import Image from 'next/image'
 import reactMarkdown from 'react-markdown'
 import {LightgalleryItem} from "react-lightgallery"
 import "lightgallery.js/dist/css/lightgallery.css";
-import InitClient from "../../lib/client"
+import client from "../../lib/client"
+import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 
 const Post = ({post, galleries}) => {
   // console.log(galleries.attributes.images.data)
@@ -32,7 +33,6 @@ const Post = ({post, galleries}) => {
     <h1 className='col-span-12'>{galleries.attributes.title}</h1>
 
     {imageData.map((image,idx) =>{
-      console.log(idx)
       return (
       <PhotoItem key={idx} image={`http://localhost:1337${image.attributes.url}`} />
     )}
@@ -56,7 +56,6 @@ export default Post;
 export const getStaticProps = async ({params}) => {
   // this is whatever the page is so here it's [slug], if it was [id] then {id} = params https://nextjs.org/docs/api-reference/data-fetching/get-static-props
   let {slug} = params;
-  const client = InitClient()
   const {data} = await client.query({
     query: gql(`
     query($slug: String!){
@@ -94,7 +93,6 @@ export const getStaticProps = async ({params}) => {
 }
 
 export async function getStaticPaths() {
-  const client = InitClient()
   const {data} = await client.query({
     query: gql`
     query {
@@ -109,6 +107,6 @@ export async function getStaticPaths() {
   let {galleries: {data: galleriesData}} = data;
   return {
     paths: galleriesData.map((gallery) => `/galleries/${gallery.attributes.slug}`),
-    fallback: true // false or 'blocking'
+    fallback: false // false or 'blocking'
   };
 }

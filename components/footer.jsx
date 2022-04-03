@@ -2,14 +2,17 @@ import Link from 'next/link'
 const Footer = () => {
   const socials = [
     {
-        name: 'instagram',
-        url: 'http://instagram.com/craigmadethis'
+      key: '1',
+      name: 'instagram',
+      url: 'http://instagram.com/craigmadethis'
     },
     {
+      key: '2',
         name: 'twitter',
         url: 'http://twitter.com/craigmadethis'
     },
     {
+      key: '3',
         name: 'facebook',
         url: 'http://facebook.com/craigmadethis'
     }
@@ -36,7 +39,7 @@ const Footer = () => {
     <div className='text-right mx-4'>
     <h1 className = 'pb-2 font-jost font-semibold'> Follow me: </h1>
     <ul>
-    {socials.map(social => <Link href={social.url} as={social.url}><a><li key={social.name} >{social.name}</li></a></Link>)}
+    {socials.map(social => <Link href={social.url} as={social.url} key={social.key}><a><li  >{social.name}</li></a></Link>)}
       <li className='w-full text-center'>craigshewry@gmail.com</li>
     </ul>
     </div>

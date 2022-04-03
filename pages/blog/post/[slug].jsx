@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client'
+import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import {ProseLayout} from '../../../components/layouts'
 import ReactMarkdown from 'react-markdown'
 import remarkUnwrapImages from 'remark-unwrap-images'
@@ -96,6 +96,10 @@ export const getStaticProps = async ({params}) => {
 }
 
 export async function getStaticPaths() {
+  const client = new ApolloClient({
+    uri: 'https://cmt-back.herokuapp.com/graphql',
+    cache: new InMemoryCache(),
+  });
   const {data}= await client.query(
     {
       query: gql(POST_SLUGS)

@@ -41,16 +41,17 @@ export const getStaticPaths = async () => {
     }
   )
   let {posts:{meta: {pagination: {total: totalPages}}}} = await data
+  console.log(data)
 
-  let pageIds = []
-  for(let i=1; i<=totalPages; i++){
-    pageIds.push(`/blog/${i}`)
-  }
+  // let pageIds = []
+  // for(let i=1; i<=totalPages; i++){
+  //   pageIds.push(`/blog/${i}`)
+  // }
 
 
   return {
-    // paths: ['/blog/1', '/blog/2'],
-    paths: pageIds,
+    paths: ['/blog/1', '/blog/2'],
+    // paths: pageIds,
     fallback:false,
   }
 

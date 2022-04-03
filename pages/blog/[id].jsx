@@ -40,7 +40,7 @@ export const getStaticPaths = async () => {
     variables:{size:1},
     }
   )
-  let {posts:{meta: {pagination: {total: totalPages}}}} = await data
+  // let {posts:{meta: {pagination: {total: totalPages}}}} = await data
   console.log(data)
 
   // let pageIds = []

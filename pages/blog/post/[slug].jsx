@@ -90,7 +90,7 @@ export const getStaticProps = async ({params}) => {
     }
   )
 
-  let {posts: {data: postsData}, categories:{data:catsData}} = await data;
+  let {posts: {data: postsData}, categories:{data:catsData}} = data;
     return {
         props: {
             post: postsData[0],
@@ -110,7 +110,7 @@ export async function getStaticPaths() {
     }
   )
 
-  let {posts: {data: postsData}} = await data;
+  let {posts: {data: postsData}} = data;
   postsData.forEach((post) => console.log(post.attributes.slug))
   return {
     paths: postsData.map((post) => `/blog/post/${post.attributes.slug}`),

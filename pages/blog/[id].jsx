@@ -28,7 +28,7 @@ export const getStaticProps = async ({params}) => {
     variables:{pageNum:parseInt(id), size:postperpage}
     }
   )
-  let {posts: {data: postsData}, categories: {data: catsData}} = await data;
+  let {posts: {data: postsData}, categories: {data: catsData}} = data;
     return {
         props: {
             posts: postsData,

@@ -67,7 +67,7 @@ export const getStaticProps = async ({params}) => {
         }
     }`, 
     variables:{slug:`${slug}`}})
-  let {posts: {data: postsData}, categories: {data: catsData}} = await data;
+  let {posts: {data: postsData}, categories: {data: catsData}} = data;
     return {
         props: {
             posts: postsData,
@@ -93,7 +93,7 @@ export async function getStaticPaths() {
         }
       } 
     }`})
-  let {categories: {data: catData}}= await data;
+  let {categories: {data: catData}}= data;
   return {
     paths: catData.map((cat) => `/categories/${cat.attributes.category}`),
     fallback: false // false or 'blocking'

@@ -9,19 +9,21 @@ function Navbar() {
     <h1 className="hover:text-orange-400"> <Link className="hover:text-orange-400" href='/me'>me</Link></h1>
     </div>
     </div>
-    <Link href='/' as={'/'}>
-    <a>
-	  <div className='text-d3 md:text-d2 font-bold font-jost whitespace-pre-wrap text-right w-2/3 hover:text-emerald-400 '>
-		  <h1>@CRAIG</h1>
-		  <h1>
+    <div>
+    <Link href='/' as={'/'} >
+    <a >
+	  <div className='text-d3 md:text-d2 font-bold font-jost whitespace-pre-wrap text-right hover:text-emerald-400'>
+		  <h1 >@CRAIG</h1>
+		  <h1 >
 		  MADE
 		  </h1>
-		  <h1>
+		  <h1 >
 		  THIS
 		  </h1>
 	  </div>
     </a>
     </Link>
+    </div>
     </nav>
   )
 }

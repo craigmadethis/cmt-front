@@ -17,6 +17,10 @@ return  (
 }
 
 export const getStaticProps = async ({params}) => {
+  const client = new ApolloClient({
+    uri: 'https://cmt-back.herokuapp.com/graphql',
+    cache: new InMemoryCache(),
+  });
   let {id} = params
   const {data} = await client.query(
     {
@@ -46,18 +50,17 @@ export const getStaticPaths = async () => {
     variables:{size:1},
     }
   )
-  let {posts:{meta: {pagination: {total: totalPages}}}} = await data
-  console.log(totalPages)
+  let {posts:{meta: {pagination: {total: totalPages}}}} = data
 
-  // let pageIds = []
-  // for(let i=1; i<=totalPages; i++){
-  //   pageIds.push(`/blog/${i}`)
-  // }
+  let pageIds = []
+  for(let i=1; i<=totalPages; i++){
+    pageIds.push(`/blog/${i}`)
+  }
 
 
   return {
-    paths: ['/blog/1', '/blog/2'],
-    // paths: pageIds,
+    // paths: ['/blog/1', '/blog/2'],
+    paths: pageIds,
     fallback:false,
   }
 

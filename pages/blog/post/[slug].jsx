@@ -75,6 +75,10 @@ const Post = ({post,categories}) => {
 export default Post;
 
 export const getStaticProps = async ({params}) => {
+  const client = new ApolloClient({
+    uri: 'https://cmt-back.herokuapp.com/graphql',
+    cache: new InMemoryCache(),
+  });
   // this is whatever the page is so here it's [slug], if it was [id] then {id} = params https://nextjs.org/docs/api-reference/data-fetching/get-static-props
   let {slug} = params;
 

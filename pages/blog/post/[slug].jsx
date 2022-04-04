@@ -6,11 +6,15 @@ import Image from 'next/image'
 import {LightgalleryItem} from "react-lightgallery"
 import client from "../../../lib/client"
 import { POST_BY_SLUG, POST_SLUGS} from '../../../lib/queries'
+import { getStrapiURL, getStrapiMedia} from '../../../lib/getstrapiurl'
 
 
 
 const Post = ({post,categories}) => {
   const {attributes:{title: postTitle, createdAt: postCreated, description: postDescription, content: postContent, gallery: postGallery} } = post
+  console.log(getStrapiURL("/blog/1"))
+  console.log(getStrapiMedia('/uploads/hello.jpg'))
+  console.log(getStrapiMedia('http://google.com/uploads/hello.jpg'))
 
  // var galleryImages = postGallery.data.attributes.images.data
 

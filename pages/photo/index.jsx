@@ -21,7 +21,7 @@ export default Me;
 
 export const getStaticProps = async ({params}) => {
 
-  const client = InitClient
+  const client = InitClient()
   // const client = new ApolloClient({
   //   // uri: 'https://cmt-back.herokuapp.com/graphql',
   //   uri: 'http://localhost:1337/graphql',

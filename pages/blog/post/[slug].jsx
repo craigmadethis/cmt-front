@@ -7,6 +7,7 @@ import {LightgalleryItem} from "react-lightgallery"
 import client from "../../../lib/client"
 import { POST_BY_SLUG, POST_SLUGS} from '../../../lib/queries'
 import { getStrapiURL, getStrapiMedia} from '../../../lib/getstrapiurl'
+import InitClient from '../../../lib/client'
 
 
 
@@ -79,10 +80,7 @@ const Post = ({post,categories}) => {
 export default Post;
 
 export const getStaticProps = async ({params}) => {
-  const client = new ApolloClient({
-    uri: 'https://cmt-back.herokuapp.com/graphql',
-    cache: new InMemoryCache(),
-  });
+  const client = InitClient()
   // this is whatever the page is so here it's [slug], if it was [id] then {id} = params https://nextjs.org/docs/api-reference/data-fetching/get-static-props
   let {slug} = params;
 
@@ -104,10 +102,7 @@ export const getStaticProps = async ({params}) => {
 }
 
 export async function getStaticPaths() {
-  const client = new ApolloClient({
-    uri: 'https://cmt-back.herokuapp.com/graphql',
-    cache: new InMemoryCache(),
-  });
+  const client = InitClient()
   const {data}= await client.query(
     {
       query: gql(POST_SLUGS)

@@ -2,7 +2,7 @@
 import {SidebarLayout} from '../../components/layouts'
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import PostGrid from '../../components/postgrid'
-import client from '../../lib/client'
+import InitClient from '../../lib/client'
 import postperpage from '../../lib/postperpage'
 import {POST_LIST, PAGE_DATA} from '../../lib/queries'
 
@@ -17,10 +17,7 @@ return  (
 }
 
 export const getStaticProps = async ({params}) => {
-  const client = new ApolloClient({
-    uri: 'https://cmt-back.herokuapp.com/graphql',
-    cache: new InMemoryCache(),
-  });
+  const client = InitClient()
   let {id} = params
   const {data} = await client.query(
     {
@@ -39,11 +36,7 @@ export const getStaticProps = async ({params}) => {
 
 export const getStaticPaths = async () => {
 
-  const client = new ApolloClient({
-    uri: 'https://cmt-back.herokuapp.com/graphql',
-    cache: new InMemoryCache(),
-  });
-
+  const client = InitClient()
   const {data} = await client.query(
     {
     query: gql(PAGE_DATA),

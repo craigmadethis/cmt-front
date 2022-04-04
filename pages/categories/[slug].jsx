@@ -6,7 +6,7 @@ import PostSidebar from '../../components/BlogSidebar'
 import PostGrid from '../../components/postgrid'
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import {SidebarLayout} from '../../components/layouts'
-import client from '../../lib/client'
+import InitClient from '../../lib/client'
 
 export default function Home({posts, categories}) {
   // posts.forEach(post => console.log(post.attributes.cover.data.attributes.url))
@@ -24,10 +24,7 @@ export default function Home({posts, categories}) {
 
 
 export const getStaticProps = async ({params}) => {
-  const client = new ApolloClient({
-    uri: 'https://cmt-back.herokuapp.com/graphql',
-    cache: new InMemoryCache(),
-  });
+  const client = InitClient()
   let {slug} = params;
   const {data} = await client.query({
     query: gql`
@@ -36,6 +33,7 @@ export const getStaticProps = async ({params}) => {
         data{
           attributes{
             title
+            description
             slug 
             updatedAt
             createdAt
@@ -78,10 +76,7 @@ export const getStaticProps = async ({params}) => {
 
 
 export async function getStaticPaths() {
-  const client = new ApolloClient({
-    uri: 'https://cmt-back.herokuapp.com/graphql',
-    cache: new InMemoryCache(),
-  });
+  const client = InitClient()
   const {data} = await client.query({
     query: gql`
     query {

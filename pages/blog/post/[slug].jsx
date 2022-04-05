@@ -103,9 +103,10 @@ export async function getStaticPaths() {
   )
 
   let {posts: {data: postsData}} = data;
-  postsData.forEach((post) => console.log(post.attributes.slug))
-  return {
+
+
+  return ({
     paths: postsData.map((post) => `/blog/post/${post.attributes.slug}`),
     fallback: false // false or 'blocking'
-  };
+  });
 }

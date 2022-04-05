@@ -9,9 +9,6 @@ import {SidebarLayout} from '../../components/layouts'
 import InitClient from '../../lib/client'
 
 export default function Home({posts, categories}) {
-  // posts.forEach(post => console.log(post.attributes.cover.data.attributes.url))
-  // posts.forEach(post => console.log(post.attributes.cover))
-  // posts.forEach(post => console.log(post))
   return (
     <SidebarLayout categories={categories} >
       <PostGrid posts={posts} />

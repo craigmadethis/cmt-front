@@ -12,7 +12,7 @@ import InitClient from '../../../lib/client'
 
 
 const Post = ({post,categories}) => {
-  const {attributes:{title: postTitle, created: postCreated, description: postDescription, content: postContent, gallery: postGallery} } = post
+  const {attributes:{title: postTitle, created: postCreated, createdAt: postCreatedAt, description: postDescription, content: postContent, gallery: postGallery} } = post
 
  // var galleryImages = postGallery.data.attributes.images.data
 

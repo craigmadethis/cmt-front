@@ -6,9 +6,8 @@ import TruncateMarkup from 'react-truncate-markup'; // recommend
 const PostCard = ({post}) => {
 
 
-  let {attributes: {title: postTitle, description:postDescription, slug:postSlug, createdAt:postCreated, updatedAt: postUpdated, cover: {data: {attributes: {name:coverName, url:coverUrl}}}}} = post
+  let {attributes: {title: postTitle, description:postDescription, slug:postSlug, created:postCreated, updatedAt: postUpdated,  cover: {data: {attributes: {name:coverName, url:coverUrl}}}}} = post
 
-  console.log(postTitle, postDescription)
 
 
 

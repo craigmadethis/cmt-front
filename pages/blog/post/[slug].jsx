@@ -12,10 +12,7 @@ import InitClient from '../../../lib/client'
 
 
 const Post = ({post,categories}) => {
-  const {attributes:{title: postTitle, createdAt: postCreated, description: postDescription, content: postContent, gallery: postGallery} } = post
-  console.log(getStrapiURL("/blog/1"))
-  console.log(getStrapiMedia('/uploads/hello.jpg'))
-  console.log(getStrapiMedia('http://google.com/uploads/hello.jpg'))
+  const {attributes:{title: postTitle, created: postCreated, description: postDescription, content: postContent, gallery: postGallery} } = post
 
  // var galleryImages = postGallery.data.attributes.images.data
 
@@ -41,7 +38,7 @@ const Post = ({post,categories}) => {
       else {
         return (
           <div>
-            <div className='mx-auto w-full max-w-6xl aspect-[4/3] relative '>
+            <div className='mx-auto w-5/6 max-w-6xl aspect-[4/3] relative '>
               <LightgalleryItem src={image.src} group="page">
                 <a className=''>
                   <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
@@ -53,26 +50,22 @@ const Post = ({post,categories}) => {
     }
   }
 
-  // console.log(postCreated)
   const postDate = new Date(postCreated)
-  // console.log(postDate)
-  // console.log(postCreated.createdAt.toLocaleDateString('en-GB', {year: 'long', month: 'long', day: 'numeric'}))
-  // console.log(navigator.languages)
   
   return (
     <ProseLayout>
-
-
+    <div className='col-span-6 col-start-2'>
     <h1 className ="text-center mb-2 py-4 col-span-8 mx-auto text-d3 md:text-d2 font-semibold font-jost leading-normal text-blue-400">{postTitle}</h1>
-    <h3 className="col-span-8 mx-auto text-center text-p3 md:text-p2 font-jost font-semibold"><span className="text-gray-900 border-b-4 border-blue-400">{postDate.toLocaleDateString('en-GB')}</span></h3>
-    <div className="col-span-8 text-center font-bitter text-gray-900 text-p3 md:text-p2 leading-normal w-5/6  mx-auto py-4">{postDescription}</div>
-    <div className="md col-span-8 my-4">
+    <h3 className="text-center text-p3 md:text-p2 font-jost font-semibold"><span className="text-gray-900 border-b-4 border-blue-400">{postDate.toLocaleDateString('en-GB')}</span></h3>
+    <div className="text-center font-bitter text-gray-900 text-p3 md:text-p2 leading-normal w-5/6  mx-auto py-4">{postDescription}</div>
+    
+    <div className="md my-4">
       <ReactMarkdown components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `${uri}` } remarkPlugins={[remarkUnwrapImages]} >
     {postContent}
     </ReactMarkdown>
     </div>
+    </div>
     
-
     </ProseLayout>
   )
 }

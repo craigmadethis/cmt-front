@@ -6,7 +6,7 @@ const PostSidebar = ( {categories} ) => {
       <div className="flex-col w-full justify-end text-right">
         <h1 className="w-full text-right text-h2 md:text-h1 font-jost py-2 font-semibold ">Lost?</h1>
       <ul className="text-p2 md:text-p1 font-bitter">
-      {cats.map(cat => <li className='hover:text-blue-400' key={cat.category}><Link href='/categories/[slug]' as={`/categories/${cat.category}`}>{cat.category}</Link></li>)}
+      {cats.map(cat => <li className='hover:text-blue-400' key={cat.category}><Link href='/blog/category/[category]/[p]' as={`/blog/category/${cat.category}/1`}>{cat.category}</Link></li>)}
       </ul>
       </div>
       </div>

@@ -55,11 +55,18 @@ export const getStaticPaths = async () => {
   )
   let {posts:{meta: {pagination: {pageCount: totalPages}}}} = data
 
-  let pageIds = []
-  for(let i=1; i<=totalPages; i++){
-    pageIds.push(`/blog/${i}`)
-  }
+  /// keep this here so I can see the difference, I could generate a set of strings but also just pass params and let nextjs do the work
+  // let pageIds = []
+  // for(let i=1; i<=totalPages; i++){
+  //   pageIds.push(`/blog/${i}`)
+  // }
 
+  let pageIds=[]
+  for (let i = 1; i<=totalPages; i++){
+    pageIds.push(
+      {params:{id: `${i}`}}
+    )
+  }
 
   return {
     // paths: ['/blog/1', '/blog/2'],

@@ -1,8 +1,4 @@
-import Head from 'next/head'
 // import Image from 'next/image'
-import Navbar from '../../components/nav'
-import Footer from '../../components/footer'
-import PostSidebar from '../../components/BlogSidebar'
 import PostGrid from '../../components/postgrid'
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import {SidebarLayout} from '../../components/layouts'

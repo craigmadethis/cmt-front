@@ -1,20 +1,27 @@
 // import Image from 'next/image'
+import {gql} from '@apollo/client'
 import {SidebarLayout} from '../../components/layouts'
-import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
 import PostGrid from '../../components/postgrid'
 import InitClient from '../../lib/client'
 import postperpage from '../../lib/postperpage'
 import {POST_LIST, PAGE_DATA} from '../../lib/queries'
+import{ useRouter, withRouter } from 'next/router'
 
 
-export default function Home({posts, categories}) {
+const Home = (props) => {
+  let {posts, categories, pagination} = props
+
 return  (
+  <>
     <SidebarLayout categories={categories}>
-      <PostGrid posts={posts} full={false} />
+      <PostGrid posts={posts} pagination ={pagination} full={false} />
     </SidebarLayout>
+  </>
 
   )
 }
+
+export default withRouter(Home);
 
 export const getStaticProps = async ({params}) => {
   const client = InitClient()
@@ -25,11 +32,14 @@ export const getStaticProps = async ({params}) => {
     variables:{pageNum:parseInt(id), size:postperpage}
     }
   )
-  let {posts: {data: postsData}, categories: {data: catsData}} = data;
+
+
+  let {posts: {data: postsData, meta: {pagination: pagination}}, categories: {data: catsData}} = data;
     return {
         props: {
             posts: postsData,
             categories: catsData,
+            pagination: pagination,
         }
     }
 }
@@ -43,7 +53,7 @@ export const getStaticPaths = async () => {
     variables:{size:1},
     }
   )
-  let {posts:{meta: {pagination: {total: totalPages}}}} = data
+  let {posts:{meta: {pagination: {pageCount: totalPages}}}} = data
 
   let pageIds = []
   for(let i=1; i<=totalPages; i++){

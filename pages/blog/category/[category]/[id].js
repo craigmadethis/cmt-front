@@ -70,7 +70,7 @@ export async function getStaticPaths() {
       const {data} = await client.query({
         query: gql`
         query ($cat:String!){
-          posts (pagination:{pageSize:1},filters:{categories:{category:{eq:$cat}}}) {
+          posts (pagination:{pageSize:10},filters:{categories:{category:{eq:$cat}}}) {
             meta {
               pagination{
                 pageCount

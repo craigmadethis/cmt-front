@@ -16,6 +16,7 @@ const Pagination = ({pageCount}) => {
 
       <button
       type="button"
+      className='font-jost font-semibold text-p1'
       onClick={() => {
         router.push({
           pathname: router.pathname,
@@ -23,13 +24,14 @@ const Pagination = ({pageCount}) => {
         })
       }}
       >
-      {'<'}
+      {'< prev'}
       </button>
       </div> 
       <div className='w-1/2 text-right hover:text-blue-400 '>
 
       <button
       type="button"
+      className='font-jost font-semibold text-p1'
       onClick={() => {
         router.push({
           pathname: router.pathname,
@@ -37,7 +39,7 @@ const Pagination = ({pageCount}) => {
         })
       }}
       >
-      {'>'}
+      {'next >'}
       </button>
 
       </div>
@@ -49,6 +51,7 @@ const Pagination = ({pageCount}) => {
       <div className='w-full text-right hover:text-blue-400 '>
       <button
       type="button"
+      className='font-jost font-semibold text-p1'
       onClick={() => {
         router.push({
           pathname: router.pathname,
@@ -56,7 +59,7 @@ const Pagination = ({pageCount}) => {
         })
       }}
       >
-      {'>'}
+      {'next >'}
       </button>
       </div>
     </div>
@@ -67,6 +70,7 @@ const Pagination = ({pageCount}) => {
       <div className='w-full text-left hover:text-blue-400 '>
       <button
       type="button"
+      className='font-jost font-semibold text-p1'
       onClick={() => {
         router.push({
           pathname: router.pathname,
@@ -74,7 +78,7 @@ const Pagination = ({pageCount}) => {
         })
       }}
       >
-      {'<'}
+      {'< prev'}
       </button>
       </div> 
     </div>
@@ -94,6 +98,7 @@ const Pagination = ({pageCount}) => {
 
       <button
       type="button"
+      className='font-jost font-semibold text-p1'
       onClick={() => {
         router.push({
           pathname: router.pathname,
@@ -101,13 +106,14 @@ const Pagination = ({pageCount}) => {
         })
       }}
       >
-      {'<'}
+      {'< prev'}
       </button>
       </div> 
       <div className='w-1/2 text-right hover:text-blue-400 '>
 
       <button
       type="button"
+      className='font-jost font-semibold text-p1'
       onClick={() => {
         router.push({
           pathname: router.pathname,
@@ -115,7 +121,7 @@ const Pagination = ({pageCount}) => {
         })
       }}
       >
-      {'>'}
+      {'next >'}
       </button>
 
       </div>
@@ -127,6 +133,7 @@ const Pagination = ({pageCount}) => {
       <div className='w-full text-right hover:text-blue-400 '>
       <button
       type="button"
+      className='font-jost font-semibold text-p1'
       onClick={() => {
         router.push({
           pathname: router.pathname,
@@ -134,7 +141,7 @@ const Pagination = ({pageCount}) => {
         })
       }}
       >
-      {'>'}
+      {'next >'}
       </button>
       </div>
     </div>
@@ -145,6 +152,7 @@ const Pagination = ({pageCount}) => {
       <div className='w-full text-left hover:text-blue-400 '>
       <button
       type="button"
+      className='font-jost font-semibold text-p1'
       onClick={() => {
         router.push({
           pathname: router.pathname,
@@ -152,7 +160,7 @@ const Pagination = ({pageCount}) => {
         })
       }}
       >
-      {'<'}
+      {'< prev'}
       </button>
       </div> 
     </div>

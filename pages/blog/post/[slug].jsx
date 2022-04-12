@@ -8,11 +8,19 @@ import client from "../../../lib/client"
 import { POST_BY_SLUG, POST_SLUGS} from '../../../lib/queries'
 import { getStrapiURL, getStrapiMedia} from '../../../lib/getstrapiurl'
 import InitClient from '../../../lib/client'
+import Link from 'next/link'
 
 
 
 const Post = ({post,categories}) => {
   const {attributes:{title: postTitle, created: postCreated, createdAt: postCreatedAt, description: postDescription, content: postContent, gallery: postGallery} } = post
+
+  // const {data: {attributes: {slug: gallerySlug, title:galleryTitle} = {} } = {} } = postGallery || {};
+  const {data: galleryData} = postGallery || {}
+  const {attributes: galleryAttributes} = galleryData || {}
+  const {title: galleryTitle = '', sllug: gallerySlug = ''} = galleryAttributes || {}
+  // console.log(gallerySlug, galleryTitle)
+
 
  // var galleryImages = postGallery.data.attributes.images.data
 
@@ -63,6 +71,15 @@ const Post = ({post,categories}) => {
       <ReactMarkdown components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `${uri}` } remarkPlugins={[remarkUnwrapImages]} >
     {postContent}
     </ReactMarkdown>
+
+
+    {postGallery && postGallery.data != null ?  (
+
+    <div className='col-span-8 md:col-span-6 text-right font-jost font-semibold'>View the gallery: <Link href={`/galleries/${gallerySlug}`}><a>{galleryTitle}</a></Link></div>
+    ): null}
+
+
+
     </div>
     </div>
     

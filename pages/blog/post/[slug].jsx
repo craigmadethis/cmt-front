@@ -18,8 +18,7 @@ const Post = ({post,categories}) => {
   // const {data: {attributes: {slug: gallerySlug, title:galleryTitle} = {} } = {} } = postGallery || {};
   const {data: galleryData} = postGallery || {}
   const {attributes: galleryAttributes} = galleryData || {}
-  const {title: galleryTitle = '', sllug: gallerySlug = ''} = galleryAttributes || {}
-  // console.log(gallerySlug, galleryTitle)
+  const {title: galleryTitle = '', slug: gallerySlug = ''} = galleryAttributes || {}
 
 
  // var galleryImages = postGallery.data.attributes.images.data

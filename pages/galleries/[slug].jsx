@@ -63,7 +63,6 @@ export const getStaticPaths = async () => {
     }}`
   })
   let {galleries:{data: galleryData}} = data
-  console.log(galleryData)
   let paths = []
   galleryData.forEach(gallery => paths.push({params: {slug: gallery.attributes.slug } }))
 

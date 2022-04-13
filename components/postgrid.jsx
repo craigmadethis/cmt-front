@@ -2,7 +2,6 @@ import PostCard from './postcard'
 import Pagination from './pagination'
 const PostGrid = ({posts, pagination, full }) => {
   let {pageCount} = pagination
-  console.log(pageCount)
   if (full) {
     return (
       <>

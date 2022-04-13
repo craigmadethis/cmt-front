@@ -59,8 +59,6 @@ export const getStaticProps = async () => {
   )
 
   let {cvs: {data:cvData}} = data
-  console.log(cvData[0])
-  // let {cvs: {data: postsData}, categories:{data:catsData}} = data;
 
   return {
     props: {

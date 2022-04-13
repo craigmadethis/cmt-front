@@ -6,7 +6,6 @@ const Pagination = ({pageCount}) => {
   const category = router.query.category || null
   
   
-  console.log(category)
   if (category != null) {
   return (
     <>

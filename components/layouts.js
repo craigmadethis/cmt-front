@@ -30,7 +30,7 @@ export const ProseLayout = (props) => {
 
     </div>
     </div>
-    <Footer/>
+    <Footer socials={props.socials}/>
     </div>
 
   )

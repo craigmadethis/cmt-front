@@ -5,14 +5,15 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import Image from 'next/image'
 import {LightgalleryItem} from "react-lightgallery"
 import client from "../../../lib/client"
-import { POST_BY_SLUG, POST_SLUGS} from '../../../lib/queries'
+import { POST_BY_SLUG, POST_SLUGS, GET_SOCIALS} from '../../../lib/queries'
 import { getStrapiURL, getStrapiMedia} from '../../../lib/getstrapiurl'
 import InitClient from '../../../lib/client'
 import Link from 'next/link'
 
 
 
-const Post = ({post,categories}) => {
+const Post = ({post,categories, socials}) => {
+  socials.forEach(social => console.log(social.attributes.site))
   const {attributes:{title: postTitle, created: postCreated, createdAt: postCreatedAt, description: postDescription, content: postContent, gallery: postGallery} } = post
 
   // const {data: {attributes: {slug: gallerySlug, title:galleryTitle} = {} } = {} } = postGallery || {};
@@ -60,7 +61,7 @@ const Post = ({post,categories}) => {
   const postDate = new Date(postCreated)
   
   return (
-    <ProseLayout>
+    <ProseLayout socials={socials}>
     <div className='col-span-8 md:col-span-6 md:col-start-2'>
     <h1 className ="text-center mb-2 py-4 col-span-8 mx-auto text-d3 md:text-d2 font-semibold font-jost leading-normal text-blue-400">{postTitle}</h1>
     <h3 className="text-center text-p3 md:text-p2 font-jost font-semibold"><span className="text-gray-900 border-b-4 border-blue-400">{postDate.toLocaleDateString('en-GB')}</span></h3>
@@ -101,13 +102,21 @@ export const getStaticProps = async ({params}) => {
     }
   )
 
+  const {data: dataSocials} = await client.query(
+    {query: gql(GET_SOCIALS)}
+  )
+
+
   let {posts: {data: postsData}, categories:{data:catsData}} = data;
-    return {
-        props: {
-            post: postsData[0],
-            categories: catsData,
-        }
+  let {socials: {data: socialsData}} = dataSocials
+
+  return {
+    props: {
+      post: postsData[0],
+      categories: catsData,
+      socials: socialsData
     }
+  }
 }
 
 export async function getStaticPaths() {

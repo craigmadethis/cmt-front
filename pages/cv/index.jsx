@@ -37,7 +37,7 @@ export const getStaticProps = async () => {
     {
       query: gql`
       query { 
-        cvs{
+        cv{
           data{
             attributes{
               description 

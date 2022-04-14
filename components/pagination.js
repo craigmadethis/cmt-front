@@ -4,169 +4,86 @@ const Pagination = ({pageCount}) => {
   const router = useRouter()
   const pageNum = Number(router.query.id)
   const category = router.query.category || null
-  
-  
-  if (category != null) {
-  return (
-    <>
-    {(pageNum >=2 && pageNum < pageCount) && (
-    <div className='col-span-full flex text-h3 md:text-h2 font-jost font-semibold w-full my-6'>
-      <div className='w-1/2 text-left hover:text-blue-400 '>
-
+  const NextButton = ({routerquery}) =>(
       <button
       type="button"
-      className='font-jost font-semibold text-p1'
+      className='font-semibold hover:text-blue-400'
       onClick={() => {
         router.push({
           pathname: router.pathname,
-          query: { category:null||router.query.category, id:Number(router.query.id)-1 },
+          query: routerquery.next,
         })
       }}
       >
-      {'< prev'}
+      {'>'}
       </button>
-      </div> 
-      <div className='w-1/2 text-right hover:text-blue-400 '>
-
-      <button
-      type="button"
-      className='font-jost font-semibold text-p1'
-      onClick={() => {
-        router.push({
-          pathname: router.pathname,
-          query: { category:null||router.query.category, id:Number(router.query.id)+1 },
-        })
-      }}
-      >
-      {'next >'}
-      </button>
-
-      </div>
-    </div>
-    )
-    }
-    {(pageNum ==1  && pageCount > 1) && (
-    <div className='col-span-full flex text-h3 md:text-h2 font-jost font-semibold w-full my-6'>
-      <div className='w-full text-right hover:text-blue-400 '>
-      <button
-      type="button"
-      className='font-jost font-semibold text-p1'
-      onClick={() => {
-        router.push({
-          pathname: router.pathname,
-          query: { category: null||router.query.category, id:Number(router.query.id)+1 },
-        })
-      }}
-      >
-      {'next >'}
-      </button>
-      </div>
-    </div>
-    )
-    }
-    {(pageCount != 1 && pageNum == pageCount)  && (
-    <div className='col-span-full flex text-h3 md:text-h2 font-jost font-semibold w-full my-6'>
-      <div className='w-full text-left hover:text-blue-400 '>
-      <button
-      type="button"
-      className='font-jost font-semibold text-p1'
-      onClick={() => {
-        router.push({
-          pathname: router.pathname,
-          query: { category:router.query.category, id:Number(router.query.id)-1 },
-        })
-      }}
-      >
-      {'< prev'}
-      </button>
-      </div> 
-    </div>
-    )
-    }
-    </>
   )
 
-  }
-  else {
+  const PrevButton = ({routerquery}) => (
+      <button
+      type="button"
+      className='font-semibold hover:text-blue-400'
+      onClick={() => {
+        router.push({
+          pathname: router.pathname,
+          query: routerquery.prev,
+        })
+      }}
+      >
+      {'<'}
+      </button>
+  )
+
+
+  const routerquery = category ? ({
+    next :{
+      id:Number(router.query.id)+1,
+      category:null||router.query.category 
+    },
+    prev: {
+      id:Number(router.query.id)-1,
+      category:null||router.query.category 
+    }
+  })
+    :( {
+      next :{
+        id:Number(router.query.id)+1,
+      },
+      prev: {
+        id:Number(router.query.id)-1,
+      }
+    })
 
   return (
-    <>
-    {(pageNum >=2 && pageNum < pageCount) && (
-    <div className='col-span-full flex text-h3 md:text-h2 font-jost font-semibold w-full my-6'>
-      <div className='w-1/2 text-left hover:text-blue-400 '>
+    <div className='col-span-full flex text-p1 md:text-h3 font-jost font-semibold w-full my-6'>
 
-      <button
-      type="button"
-      className='font-jost font-semibold text-p1'
-      onClick={() => {
-        router.push({
-          pathname: router.pathname,
-          query: {id:Number(router.query.id)-1 },
-        })
-      }}
-      >
-      {'< prev'}
-      </button>
-      </div> 
-      <div className='w-1/2 text-right hover:text-blue-400 '>
+    <div className='w-full text-center '>
+      {(pageNum >=2 && pageNum < pageCount) && (
+        <>
+        <PrevButton routerquery={routerquery}/>
+        <span> {pageNum} </span>
+        <NextButton routerquery={routerquery}/>
+        </>
+      ) }
 
-      <button
-      type="button"
-      className='font-jost font-semibold text-p1'
-      onClick={() => {
-        router.push({
-          pathname: router.pathname,
-          query: {id:Number(router.query.id)+1 },
-        })
-      }}
-      >
-      {'next >'}
-      </button>
 
+      {(pageNum ==1  && pageCount > 1) && (
+        <>
+        <span> {pageNum} </span>
+        <NextButton routerquery={routerquery}/>
+        </>
+      )
+      }
+
+      {(pageCount != 1 && pageNum == pageCount)  && (
+        <>
+        <PrevButton routerquery={routerquery}/>
+        <span> {pageNum} </span>
+        </> 
+      )
+      }
       </div>
     </div>
-    )
-    }
-    {(pageNum ==1  && pageCount > 1) && (
-    <div className='col-span-full flex text-h3 md:text-h2 font-jost font-semibold w-full my-6'>
-      <div className='w-full text-right hover:text-blue-400 '>
-      <button
-      type="button"
-      className='font-jost font-semibold text-p1'
-      onClick={() => {
-        router.push({
-          pathname: router.pathname,
-          query: {id:Number(router.query.id)+1 },
-        })
-      }}
-      >
-      {'next >'}
-      </button>
-      </div>
-    </div>
-    )
-    }
-    {(pageCount != 1 && pageNum == pageCount)  && (
-    <div className='col-span-full flex text-h3 md:text-h2 font-jost font-semibold w-full my-6'>
-      <div className='w-full text-left hover:text-blue-400 '>
-      <button
-      type="button"
-      className='font-jost font-semibold text-p1'
-      onClick={() => {
-        router.push({
-          pathname: router.pathname,
-          query: {id:Number(router.query.id)-1 },
-        })
-      }}
-      >
-      {'< prev'}
-      </button>
-      </div> 
-    </div>
-    )
-    }
-    </>
   )
-  }
 }
-export default Pagination;
+export default Pagination 

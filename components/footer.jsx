@@ -21,12 +21,15 @@ const Footer = ({socials}) => {
     </div>
 
 
+    {socials ? (
     <div className=' text-center md:text-right mx-4'>
     <h1 className = 'pb-2 font-jost font-semibold'> Follow me: </h1>
     <ul>
     {socials.map(social => <Link href={social.attributes.url} as={social.attributes.url} key={social.attributes.site}><a><li className='hover:text-blue-400'  >{social.attributes.site}</li></a></Link>)}
     </ul>
+
     </div>
+    ): null}
 
 
     </div>

@@ -1,18 +1,18 @@
 // import Image from 'next/image'
 import PostGrid from '../../../../components/postgrid'
-import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
+import {gql} from '@apollo/client'
 import {SidebarLayout} from '../../../../components/layouts'
 import InitClient from '../../../../lib/client'
 import postperpage from '../../../../lib/postperpage'
-import {POSTS_BY_CAT} from '../../../../lib/queries'
+import {POSTS_BY_CAT, GET_CATEGORIES, GET_SOCIALS} from '../../../../lib/queries'
 import {withRouter} from 'next/router'
 
 const Home= (props)=> {
-  let {posts, categories, pagination} = props
+  let {posts, categories, pagination, socials} = props
 
 return  (
   <>
-    <SidebarLayout categories={categories}>
+    <SidebarLayout categories={categories} socials={socials}>
       <PostGrid posts={posts} pagination ={pagination} full={false} />
     </SidebarLayout>
   </>
@@ -28,49 +28,41 @@ export default withRouter(Home)
 export const getStaticProps = async ({params}) => {
   const client = InitClient()
   let {category, id} = params;
-  const {data} = await client.query(
+  const {data: {posts: {data: postsData, meta: {pagination: pagData}}, categories: {data: catsData}}} = await client.query(
     {
       query: gql(POSTS_BY_CAT), 
       variables:{cat:`${category}`, size: postperpage, pageNum: parseInt(id)}
     }
   )
-  let {posts: {data: postsData, meta: {pagination: pagData}}, categories: {data: catsData}} = data;
-    return {
-        props: {
-            posts: postsData,
-            categories: catsData,
-          pagination: pagData
-        }
+
+  const {data:{socials: {data: socialsData }}} = await client.query(
+    {query: gql(GET_SOCIALS)}
+  )
+  return {
+    props: {
+      posts: postsData,
+      categories: catsData,
+      pagination: pagData,
+      socials: socialsData,
     }
+  }
 }
 
 
 export async function getStaticPaths() {
   const client = InitClient()
-  const {data} = await client.query({
-    query: gql`
-    query {
-      categories{
-        data{
-          attributes{
-            category
-          }
-        }
-      } 
-    }`})
+  const {data: {categories: {data: catData}}} = await client.query({
+    query: gql(GET_CATEGORIES)})
 
-  let {categories: {data: catData}}= data;
-
-
-  async function woah(catData){
-  let categories = []
-  let pageCounts = []
+  async function SubPages(catData){
+    let categories = []
+    let pageCounts = []
     catData.forEach(cat => categories.push(cat.attributes.category))
     for (let cat of categories){
-      const {data} = await client.query({
+      const {data: {posts:{meta: {pagination: {pageCount}}}}} = await client.query({
         query: gql`
-        query ($cat:String!){
-          posts (pagination:{pageSize:10},filters:{categories:{category:{eq:$cat}}}) {
+        query ($cat:String!, $size: Int!){
+          posts (pagination:{pageSize:$size},filters:{categories:{category:{eq:$cat}}}) {
             meta {
               pagination{
                 pageCount
@@ -79,18 +71,17 @@ export async function getStaticPaths() {
           }
         }
         `,
-      variables:{cat:cat}
+        variables:{cat:cat, size: postperpage}
       },
-    )
-      let {posts:{meta: {pagination: {pageCount}}}} = data
+      )
       for(let i = 1; i<=pageCount; i++){
         pageCounts.push({params:{id:i.toString(), category: cat}})
-        }
+      }
     }
-  return pageCounts
+    return pageCounts
   }
 
-  let paths = await woah(catData)
+  let paths = await SubPages(catData)
 
 
 return {

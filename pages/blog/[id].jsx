@@ -4,16 +4,17 @@ import {SidebarLayout} from '../../components/layouts'
 import PostGrid from '../../components/postgrid'
 import InitClient from '../../lib/client'
 import postperpage from '../../lib/postperpage'
-import {POST_LIST, PAGE_DATA} from '../../lib/queries'
+import {POST_LIST, PAGE_DATA, GET_SOCIALS} from '../../lib/queries'
 import{ useRouter, withRouter } from 'next/router'
 
 
 const Home = (props) => {
-  let {posts, categories, pagination} = props
+  let {posts, categories, pagination, socials} = props
+
 
 return  (
   <>
-    <SidebarLayout categories={categories}>
+    <SidebarLayout categories={categories} socials={socials}>
       <PostGrid posts={posts} pagination ={pagination} full={false} />
     </SidebarLayout>
   </>
@@ -26,20 +27,32 @@ export default withRouter(Home);
 export const getStaticProps = async ({params}) => {
   const client = InitClient()
   let {id} = params
-  const {data} = await client.query(
+  const {data:{
+    posts: {
+      data: postsData, 
+      meta: {
+        pagination: pagination}
+    }, 
+    categories: {
+      data: catsData}
+  }
+  } = await client.query(
     {
     query: gql(POST_LIST),
     variables:{pageNum:parseInt(id), size:postperpage}
     }
   )
 
+  const {data:{socials: {data: socialsData }}} = await client.query(
+    {query: gql(GET_SOCIALS)}
+  )
 
-  let {posts: {data: postsData, meta: {pagination: pagination}}, categories: {data: catsData}} = data;
     return {
         props: {
             posts: postsData,
             categories: catsData,
             pagination: pagination,
+          socials: socialsData,
         }
     }
 }
@@ -47,13 +60,13 @@ export const getStaticProps = async ({params}) => {
 export const getStaticPaths = async () => {
 
   const client = InitClient()
-  const {data} = await client.query(
+  const {data: {posts:{meta: {pagination: {pageCount: totalPages}}}}} = await client.query(
     {
     query: gql(PAGE_DATA),
     variables:{size:1},
     }
   )
-  let {posts:{meta: {pagination: {pageCount: totalPages}}}} = data
+
 
   /// keep this here so I can see the difference, I could generate a set of strings but also just pass params and let nextjs do the work
   // let pageIds = []

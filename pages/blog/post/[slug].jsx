@@ -22,7 +22,7 @@ const Post = ({post,categories, socials}) => {
   const {title: galleryTitle = '', slug: gallerySlug = ''} = galleryAttributes || {}
 
 
- // var galleryImages = postGallery.data.attributes.images.data
+  // var galleryImages = postGallery.data.attributes.images.data
 
 
   const renderers = {
@@ -30,59 +30,59 @@ const Post = ({post,categories, socials}) => {
       if(image.title) { 
         return (
           <div>
-            <div className='mx-auto w-full md:w-5/6 max-w-6xl aspect-[4/3] relative '>
-              <LightgalleryItem src={image.src} group="page">
-                <a className=''>
-                  <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
-                </a>
-              </LightgalleryItem>
-            </div>
-            <p className='w-4/6 text-center'>
-              {image.title}
-            </p>
+          <div className='mx-auto w-full md:w-5/6 max-w-6xl aspect-[4/3] relative '>
+          <LightgalleryItem src={image.src} group="page">
+          <a className=''>
+          <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
+          </a>
+          </LightgalleryItem>
+          </div>
+          <p className='w-4/6 text-center'>
+          {image.title}
+          </p>
           </div>
         ) 
       }
       else {
         return (
           <div>
-            <div className='mx-auto w-full md:w-5/6 max-w-6xl aspect-[4/3] relative '>
-              <LightgalleryItem src={image.src} group="page">
-                <a className=''>
-                  <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
-                </a>
-              </LightgalleryItem>
-            </div>
+          <div className='mx-auto w-full md:w-5/6 max-w-6xl aspect-[4/3] relative '>
+          <LightgalleryItem src={image.src} group="page">
+          <a className=''>
+          <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
+          </a>
+          </LightgalleryItem>
+          </div>
           </div>
         )}
     }
   }
 
   const postDate = new Date(postCreated)
-  
+
   return (
     <ProseLayout socials={socials}>
     <div className='col-span-8 md:col-span-6 md:col-start-2'>
     <h1 className ="text-center mb-2 py-4 col-span-8 mx-auto text-d3 md:text-d2 font-semibold font-jost leading-normal text-blue-400">{postTitle}</h1>
     <h3 className="text-center text-p3 md:text-p2 font-jost font-semibold"><span className="text-gray-900 border-b-4 border-blue-400">{postDate.toLocaleDateString('en-GB')}</span></h3>
     <div className="text-center font-bitter text-gray-900 text-p3 md:text-p2 leading-normal w-5/6  mx-auto py-4">{postDescription}</div>
-    
+
     <div className="md my-4">
-      <ReactMarkdown components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `${uri}` } remarkPlugins={[remarkUnwrapImages]} >
+    <ReactMarkdown components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `${uri}` } remarkPlugins={[remarkUnwrapImages]} >
     {postContent}
     </ReactMarkdown>
 
 
     {postGallery && postGallery.data != null ?  (
 
-    <div className='col-span-8 md:col-span-6 text-right font-jost font-semibold'>View the gallery: <Link href={`/galleries/${gallerySlug}`}><a>{galleryTitle}</a></Link></div>
+      <div className='col-span-8 md:col-span-6 text-right font-jost font-semibold'>View the gallery: <Link href={`/galleries/${gallerySlug}`}><a>{galleryTitle}</a></Link></div>
     ): null}
 
 
 
     </div>
     </div>
-    
+
     </ProseLayout>
   )
 }
@@ -95,20 +95,16 @@ export const getStaticProps = async ({params}) => {
   let {slug} = params;
 
 
-  const {data} = await client.query(
+  const {data:{posts: {data: postsData}, categories:{data:catsData}}} = await client.query(
     {
       query: gql(POST_BY_SLUG), 
       variables:{slug:`${slug}`}
     }
   )
 
-  const {data: dataSocials} = await client.query(
+  const {data: {socials: {data: socialsData}}} = await client.query(
     {query: gql(GET_SOCIALS)}
   )
-
-
-  let {posts: {data: postsData}, categories:{data:catsData}} = data;
-  let {socials: {data: socialsData}} = dataSocials
 
   return {
     props: {
@@ -121,14 +117,11 @@ export const getStaticProps = async ({params}) => {
 
 export async function getStaticPaths() {
   const client = InitClient()
-  const {data}= await client.query(
+  const {data: {posts: {data: postsData}}}= await client.query(
     {
       query: gql(POST_SLUGS)
     }
   )
-
-  let {posts: {data: postsData}} = data;
-
 
   return ({
     paths: postsData.map((post) => `/blog/post/${post.attributes.slug}`),

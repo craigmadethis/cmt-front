@@ -4,16 +4,15 @@ import ReactMarkdown from 'react-markdown'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import Image from 'next/image'
 import InitClient from "../../lib/client"
-import { POST_BY_SLUG, POST_SLUGS, GET_GALLERY_IMAGES} from '../../lib/queries'
+import { POST_BY_SLUG, POST_SLUGS, GET_GALLERY_IMAGES, GET_GALLERY_SLUGS, GET_SOCIALS} from '../../lib/queries'
 import {LightgalleryItem} from "react-lightgallery"
 
-const Me = ({gallery}) => {
+const Me = ({gallery, socials}) => {
   let {attributes: {images: {data: allImages}, title, description}} = gallery
 
+  console.log(socials)
   return (
-
-
-    <GalleryLayout gallery={gallery} />
+    <GalleryLayout gallery={gallery} socials={socials}/>
   )
 }
 
@@ -34,17 +33,22 @@ export const getStaticProps = async ({params}) => {
   //
 
 
-  const {data} = await client.query(
+  const {data:{galleries: {data: galleryData}}} = await client.query(
     {
       query: gql(GET_GALLERY_IMAGES), 
       variables:{slug:slug}
     }
   )
 
-  let {galleries: {data: galleryData}} = await data;
+  const {data: {socials: {data: socialsData}}} = await client.query(
+    {query: gql(GET_SOCIALS)}
+  )
+
+
     return {
         props: {
             gallery: galleryData[0],
+            socials: socialsData
         }
     }
 }
@@ -52,17 +56,10 @@ export const getStaticProps = async ({params}) => {
 export const getStaticPaths = async () => {
   const client = InitClient()
 
-  const {data} = await client.query({
-    query: gql`query{
-    galleries{
-      data{
-        attributes{
-          slug
-        }
-      }
-    }}`
+  const {data: {galleries:{data: galleryData}}} = await client.query({
+    query: gql(GET_GALLERY_SLUGS)  
   })
-  let {galleries:{data: galleryData}} = data
+  // let {galleries:{data: galleryData}} = data
   let paths = []
   galleryData.forEach(gallery => paths.push({params: {slug: gallery.attributes.slug } }))
 

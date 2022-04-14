@@ -12,7 +12,7 @@ export const SidebarLayout = (props) => {
     {props.children}
     <PostSidebar categories={props.categories} />
   </div>
-  <Footer />
+  <Footer socials={props.socials}/>
   </div>
  )
 }
@@ -68,7 +68,7 @@ export const GalleryLayout = (props) => {
 
     </div>
     </div>
-    <Footer/>
+    <Footer socials={props.socials}/>
     </div>
 
   )}

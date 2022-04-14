@@ -24,7 +24,7 @@ export const getStaticProps = async () => {
     }
   )
 
-  const {data:{socials: {data: socialsData }}} = await client.query(
+  const {data:{footer: {data: {attributes: {socials: socialsData}} }}} = await client.query(
     {query: gql(GET_SOCIALS)}
   )
   // let {galleries: {data: galleryData}} = await data;

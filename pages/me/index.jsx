@@ -1,16 +1,13 @@
 import {gql} from '@apollo/client'
 import {ProseLayout} from '../../components/layouts'
-import ReactMarkdown from 'react-markdown'
-import remarkUnwrapImages from 'remark-unwrap-images'
-import Image from 'next/image'
-import client from "../../lib/client"
-import { POST_BY_SLUG, POST_SLUGS} from '../../lib/queries'
+import { GET_SOCIALS} from '../../lib/queries'
+import InitClient from '../../lib/client'
 
-const Me = (props) => {
+const Me = ({socials}) => {
 
   return (
 
-    <ProseLayout>
+    <ProseLayout socials={socials}>
     <div className='md col-span-8'>
     <h1 className='text-center'> hi im craig and I make things</h1>
     <p>wowow</p>
@@ -18,6 +15,20 @@ const Me = (props) => {
     </div>
     </ProseLayout>
   )
+}
+
+export const getStaticProps = async ({params}) => {
+  const client = InitClient()
+
+  const {data:{footer: {data: {attributes: {socials: socialsData}} }}} = await client.query(
+    {query: gql(GET_SOCIALS)}
+  )
+
+    return {
+        props: {
+          socials: socialsData,
+        }
+    }
 }
 
 export default Me;

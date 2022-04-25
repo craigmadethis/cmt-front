@@ -33,7 +33,8 @@ export const getStaticProps = async () => {
     {query: gql(GET_SOCIALS)}
   )
 
-  const {data: {cvs: {data:cvData}}} = await client.query(
+  
+  const {data: {cv: {data:cvData}}} = await client.query(
     {
       query: gql`
       query { 
@@ -49,10 +50,11 @@ export const getStaticProps = async () => {
       `
     }
   )
+  console.log(cvData)
 
   return {
     props: {
-      cvData: cvData[0],
+      cvData: cvData,
       socials: socialsData
     }
   }

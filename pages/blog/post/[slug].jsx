@@ -13,7 +13,7 @@ import Link from 'next/link'
 
 
 const Post = ({post,categories, socials}) => {
-  socials.forEach(social => console.log(social.attributes.site))
+  // socials.forEach(social => console.log(social.attributes.site))
   const {attributes:{title: postTitle, created: postCreated, createdAt: postCreatedAt, description: postDescription, content: postContent, gallery: postGallery} } = post
 
   // const {data: {attributes: {slug: gallerySlug, title:galleryTitle} = {} } = {} } = postGallery || {};

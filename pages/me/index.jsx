@@ -41,7 +41,6 @@ export const getStaticProps = async ({params}) => {
     query: gql(GET_ME_DATA)
     }
   )
-  console.log(meData)
 
     return {
         props: {

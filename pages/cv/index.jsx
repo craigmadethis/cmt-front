@@ -50,7 +50,6 @@ export const getStaticProps = async () => {
       `
     }
   )
-  console.log(cvData)
 
   return {
     props: {

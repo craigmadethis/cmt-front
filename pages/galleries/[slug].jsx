@@ -10,7 +10,6 @@ import {LightgalleryItem} from "react-lightgallery"
 const Me = ({gallery, socials}) => {
   let {attributes: {images: {data: allImages}, title, description}} = gallery
 
-  console.log(socials)
   return (
     <GalleryLayout gallery={gallery} socials={socials}/>
   )

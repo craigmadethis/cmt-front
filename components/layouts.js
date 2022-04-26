@@ -47,7 +47,7 @@ export const GalleryLayout = (props) => {
     <div className="w-full px-2 md:px-0 md:w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 mb-auto ">
     <div className="col-span-12 grid grid-cols-8 border-b-2 border-gray-400">
 
-    <div className='md col-span-8'>
+    <div className='markdown col-span-8'>
     <h1 className='text-center'> {title}</h1>
     <p className='text-center'> {description}</p>
           <div className='masonry-1-col md:masonry-2-col'>

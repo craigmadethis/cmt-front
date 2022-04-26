@@ -13,7 +13,7 @@ const CV = ({cvData, socials}) => {
     <div className='col-span-8 md:col-span-6 md:col-start-2'>
     <h1 className ="text-center mb-2 py-4 col-span-8 mx-auto text-d3 md:text-d2 font-semibold font-jost leading-normal text-blue-400">CV</h1>
     <div className="text-center font-bitter text-gray-900 text-p3 md:text-p2 leading-normal w-5/6  mx-auto py-4">{cvDescription}</div>
-    <div className="md my-4">
+    <div className="markdown my-4">
       <ReactMarkdown transformImageUri={uri => uri.startsWith("http") ? uri : `${uri}` }>
     {cvContent}
     </ReactMarkdown>

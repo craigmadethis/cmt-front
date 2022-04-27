@@ -19,6 +19,26 @@
       @apply border-l-emerald-400 w-4/6 mx-auto  md:px-0 border-l-4 my-4
     }
   }
+  /* .photogrid { */
+  /*   ul{ */ 
+  /*     display: flex; */
+  /*     flex-wrap: wrap; */
+  /*     list-style: none; */
+  /*   } */
+  /*   li { */
+  /*     height: 50vh; */
+  /*     flex-grow: 1; */
+  /*   } */
+  /*   img { */
+  /*     max-height: 100%; */
+  /*     min-width:100%; */
+  /*     object-fit: cover; */
+  /*     vertical-align: bottom; */
+  /*   } */
+  /*   li:last-child { */
+  /* flex-grow: 10; */
+/* } */
+  /* } */
   @variants responsive {
     .masonry-3-col {
       column-count:3;

@@ -45,24 +45,45 @@ export const GalleryLayout = (props) => {
     <Navbar />
 
     <div className="w-full px-2 md:px-0 md:w-5/6 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 mb-auto ">
-    <div className="col-span-12 grid grid-cols-8 border-b-2 border-gray-400">
+    <div className="col-span-12 w-5/6 border-b-2 border-gray-400 mx-auto">
 
-    <div className='markdown col-span-8'>
-    <h1 className='text-center'> {title}</h1>
-    <p className='text-center'> {description}</p>
-          <div className='masonry-1-col md:masonry-2-col'>
+    <div className='col-span-full'>
+    <h1 className='text-center text-h1 font-jost font-semibold text-orange-400 pb-2'> {title}</h1>
+    <p className='text-center text-p3 md:text-p2 font-bitter py-2'> {description}</p>
+
+    <div className=''>
+    <ul className='flex md:flex-row flex-col flex-wrap'>
     {allImages.map(({attributes: {url, caption, alternativeText: alt}}) => 
-            <div className='mx-auto w-full my-4 aspect-[4/3] relative break-inside-avoid ' key={url}>
-              <LightgalleryItem src={`${url}`} group="page" subHtml={caption}>
-      <a>
-                  <Image className="img-responsive" src={`${url}`} alt={alt} layout='fill' objectFit='contain'  quality='50' />
-      </a>
-                  {/* <img src={`http://localhost:1337${url}`} alt={alt} /> */}
-              </LightgalleryItem>
-            </div>
-      )
+      <li className="max-h-[75vh] md:max-h-[50vh] flex-grow">
+      <img className="my-auto min-w-full object-cover align-bottom" src={`${url}`} alt={alt}/>
+      </li>
+    )
+
     }
-          </div>
+    <li></li>
+    </ul>
+    </div>
+
+
+
+
+          {/* <div className='masonry-1-col md:masonry-2-col'> */}
+    {/* {allImages.map(({attributes: {url, caption, alternativeText: alt}}) => */} 
+          {/*   <div className='mx-auto w-full my-4 aspect-[4/3] relative break-inside-avoid ' key={url}> */}
+          {/*     <LightgalleryItem src={`${url}`} group="page" subHtml={caption}> */}
+      {/* <a> */}
+          {/*         <Image className="img-responsive" src={`${url}`} alt={alt} layout='fill' objectFit='contain'  quality='50' /> */}
+      {/* </a> */}
+          {/*         {/1* <img src={`http://localhost:1337${url}`} alt={alt} /> *1/} */}
+          {/*     </LightgalleryItem> */}
+          {/*   </div> */}
+      {/* ) */}
+    {/* } */}
+          {/* </div> */}
+
+
+
+
     </div>
 
 

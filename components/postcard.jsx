@@ -15,7 +15,8 @@ const PostCard = ({post}) => {
 
 
   return (
-    <div key={postSlug} className="mr-4 mb-2 md:mb-4 col-span-4 border-b-4 border-blue-400 flex flex-l flex-col justify-between">
+<Link href='/blog/post/[slug]' as={`/blog/post/${postSlug}`} key={postSlug}>
+    <a  className="mr-4 mb-2 md:mb-4 col-span-4 border-b-4 border-blue-400 flex flex-l flex-col justify-between">
     <div key={postSlug}>
       <Link href='/blog/post/[slug]' as={`/blog/post/${postSlug}`}><a><h1 className='text-h3 md:text-h2 font-jost font-semibold hover:text-blue-400 w-full pb-2 '>{postTitle}</h1></a></Link>
     </div>
@@ -34,7 +35,7 @@ const PostCard = ({post}) => {
       </div>
       <p className='pt-2 w-full text-left text-p3 font-jost font-bold place-self-end'>{postDate.toLocaleDateString()}</p>
     </div>
-    </div>
+    </a></Link>
   )
 }
 

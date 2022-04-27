@@ -11,7 +11,7 @@ const Me = ({socials, me}) => {
 
     <ProseLayout socials={socials}>
     <div className='markdown col-span-8 min-h-screen'>
-    <h1 className='py-2'>{me.attributes.title}</h1>
+    <h1 className='w-full md:w-2/3 text-center px-2 py-2'>{me.attributes.title}</h1>
     <div className='flex flex-col md:flex-row w-full'>
       
       <div className='markdown w-full md:w-2/3 '>

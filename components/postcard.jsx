@@ -18,7 +18,7 @@ const PostCard = ({post}) => {
 <Link href='/blog/post/[slug]' as={`/blog/post/${postSlug}`} key={postSlug}>
     <a  className="mr-4 mb-2 md:mb-4 col-span-4 border-b-4 border-blue-400 flex flex-l flex-col justify-between">
     <div key={postSlug}>
-      <Link href='/blog/post/[slug]' as={`/blog/post/${postSlug}`}><a><h1 className='text-h3 md:text-h2 font-jost font-semibold hover:text-blue-400 w-full pb-2 '>{postTitle}</h1></a></Link>
+      <Link href='/blog/post/[slug]' as={`/blog/post/${postSlug}`}><a><h1 className='text-h2 font-jost font-semibold hover:text-blue-400 w-full pb-2 '>{postTitle}</h1></a></Link>
     </div>
       <div className='relative aspect-[4/3] w-full max-h-64 mt-2 place-self-center '>
         <Image src={`${coverUrl}`} layout='fill' objectFit='cover' />

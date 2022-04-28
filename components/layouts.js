@@ -44,16 +44,21 @@ export const GalleryLayout = (props) => {
 	<div className='bg-gray-50 min-h-screen flex flex-col min-h-screen justify-between'>
     <Navbar />
 
-    <div className="w-full px-2 md:px-0 mx-auto grid grid-cols-8 md:grid-cols-12 mt-6 mb-auto border-b-2 border-gray-400">
+    <div className="w-full px-2 md:px-0 mx-auto grid grid-cols-8 md:grid-cols-12 my-6 mb-auto border-b-2 border-gray-400">
 
-    <div className='col-span-full'>
+    <div className='col-span-full mb-2'>
     <h1 className='text-center text-h1 font-jost font-semibold text-orange-400 pb-2'> {title}</h1>
-    <p className='text-center text-p3 md:text-p2 font-bitter py-2'> {description}</p>
+    <p className='text-center md:text-p2 font-bitter py-2'> {description}</p>
 
     <div className='flex flex-col md:flex-row md:flex-wrap justify-center items-center'>
-    {allImages.map(({attributes: {url, caption, alternativeText: alt}}) => 
+    {allImages.map(({attributes: {url, caption, width, height, alternativeText: alt}}) => 
           <LightgalleryItem key={url} src={`${url}`} group="page" subHtml={caption} className='aspect-square grow p-2'>
-      <img className="object-contain max-h-[50vh] md:max-h-[40vh] p-1" src={`${url}`} alt={alt}/>
+      {/* <img className="object-contain max-h-[50vh] md:max-h-[40vh] p-1" src={`${url}`} alt={alt}/> */}
+      <div className='h-[50vh] md:h-[40vh] aspect-square m-1 relative'>
+      <a>
+      <Image className="" src={`${url}`} alt={alt} layout="fill" width={`${width}`} height={`${height}`} sizes="80vw" objectFit='cover'/>
+      </a>
+      </div>
       </LightgalleryItem>
     )
 

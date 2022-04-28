@@ -10,7 +10,7 @@ const Me = ({socials, me}) => {
   return (
 
     <ProseLayout socials={socials}>
-    <div className='markdown col-span-8 min-h-screen'>
+    <div className='markdown col-span-8 min-h-fit'>
     <h1 className='w-full md:w-2/3 text-center px-2 py-2'>{me.attributes.title}</h1>
     <div className='flex flex-col md:flex-row w-full'>
       

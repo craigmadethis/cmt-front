@@ -61,7 +61,7 @@ const Post = ({post,categories, socials}) => {
 
   return (
     <ProseLayout socials={socials}>
-    <div className='col-span-8 max-w-7xl mx-auto '>
+    <div className='col-span-8 max-w-7xl mx-auto min-h-fit '>
     <h1 className ="text-center mb-2 py-4 col-span-8 mx-auto text-d3 md:text-d2 font-semibold font-jost leading-normal text-blue-400">{postTitle}</h1>
     <h3 className="text-center text-p3 md:text-p2 font-jost font-semibold"><span className="text-gray-900 border-b-4 border-blue-400">{postDate.toLocaleDateString('en-GB')}</span></h3>
     <div className="text-center font-bitter text-gray-900 text-p3 md:text-p2 leading-normal w-5/6  mx-auto py-4">{postDescription}</div>

@@ -29,9 +29,9 @@ const PostCard = ({post}) => {
         <TruncateMarkup lines={6}>
         <div>
           <p>{postDescription}</p>
-<Link href='/blog/post/[slug]' as={`/blog/post/${postSlug}`}><a><p className='w-full pt-2 font-jost font-semibold  text-p2 md:text-p1 text-right hover:text-blue-400'>Read more {'>'}</p></a></Link>
         </div>
         </TruncateMarkup>
+    <Link href='/blog/post/[slug]' as={`/blog/post/${postSlug}`}><a><p className='w-full pt-2 font-jost font-semibold  text-p2 md:text-p1 text-right hover:text-blue-400'>Read more {'>'}</p></a></Link>
       </div>
       <p className='pt-2 w-full text-left text-p3 font-jost font-bold place-self-end'>{postDate.toLocaleDateString()}</p>
     </div>

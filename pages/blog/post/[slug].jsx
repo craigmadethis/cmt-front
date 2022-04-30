@@ -10,20 +10,20 @@ import { POST_BY_SLUG, POST_SLUGS, GET_SOCIALS} from '../../../lib/queries'
 import { getStrapiURL, getStrapiMedia} from '../../../lib/getstrapiurl'
 import InitClient from '../../../lib/client'
 import Link from 'next/link'
-
+import {NextSeo} from 'next-seo'
 
 
 const Post = ({post,categories, socials}) => {
-  const {attributes:{title: postTitle, created: postCreated, createdAt: postCreatedAt, description: postDescription, content: postContent, gallery: postGallery} } = post
+  const {attributes:{title: postTitle, created: postCreated, createdAt: postCreatedAt, description: postDescription, content: postContent, gallery: postGallery, cover: {data: {attributes:  postCover}}} } = post
 
-  // const {data: {attributes: {slug: gallerySlug, title:galleryTitle} = {} } = {} } = postGallery || {};
+  console.log(postCover)
+  const seo = {
+    title: postTitle, description: postDescription,
+    openGraph: {title: postTitle, description: postDescription, type: 'article', article: {publishedTime: postCreated}, images:[{...postCover}]},
+  }
   const {data: galleryData} = postGallery || {}
   const {attributes: galleryAttributes} = galleryData || {}
   const {title: galleryTitle = '', slug: gallerySlug = ''} = galleryAttributes || {}
-
-
-  // var galleryImages = postGallery.data.attributes.images.data
-
 
   const renderers = {
     img: (image) =>{ 
@@ -63,6 +63,11 @@ const Post = ({post,categories, socials}) => {
 
 
   return (
+    <>
+    <NextSeo 
+    
+    {...seo}
+    />
     <ProseLayout socials={socials}>
     <div className='col-span-8 max-w-7xl mx-auto min-h-fit '>
     <h1 className ="text-center mb-2 py-4 col-span-8 mx-auto text-d3 md:text-d2 font-semibold font-jost leading-normal text-blue-400">{postTitle}</h1>
@@ -86,6 +91,7 @@ const Post = ({post,categories, socials}) => {
     </div>
 
     </ProseLayout>
+    </>
   )
 }
 

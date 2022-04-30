@@ -2,11 +2,16 @@ import {gql} from '@apollo/client'
 import {GalleryLayout} from '../../components/layouts'
 import InitClient from "../../lib/client"
 import {GET_GALLERY_IMAGES, GET_SOCIALS} from '../../lib/queries'
+import {NextSeo} from "next-seo"
+
 
 const Me = ({gallery, socials}) => {
 
   return (
+    <>
+  <NextSeo title={'Portfolio'} description={'The photography portfolio of @craigmadethis.'}/>
     <GalleryLayout gallery={gallery} socials={socials}/>
+    </>
   )
 }
 

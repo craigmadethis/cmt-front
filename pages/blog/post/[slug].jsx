@@ -1,4 +1,5 @@
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
+import {useEffect} from 'react'
 import {ProseLayout} from '../../../components/layouts'
 import ReactMarkdown from 'react-markdown'
 import remarkUnwrapImages from 'remark-unwrap-images'
@@ -59,6 +60,8 @@ const Post = ({post,categories, socials}) => {
 
   const postDate = new Date(postCreated)
 
+
+
   return (
     <ProseLayout socials={socials}>
     <div className='col-span-8 max-w-7xl mx-auto min-h-fit '>
@@ -68,7 +71,7 @@ const Post = ({post,categories, socials}) => {
 
     <div className="markdown my-4">
     <ReactMarkdown components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `${uri}` } remarkPlugins={[remarkUnwrapImages]} >
-    {postContent}
+      {postContent}
     </ReactMarkdown>
 
 

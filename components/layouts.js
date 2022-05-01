@@ -49,7 +49,7 @@ export const GalleryLayout = (props) => {
 
     <div className='col-span-full mb-2'>
     <h1 className='text-center text-h1 font-jost font-semibold text-orange-400 pb-2'> {title}</h1>
-    <p className='text-center md:text-p2 font-bitter py-2'> {description}</p>
+    <p className='text-center md:text-p2 font-bitter pb-6 md:w-3/6 md:mx-auto'> {description}</p>
 
     <div className='flex flex-col md:flex-row md:flex-wrap justify-center items-center'>
     {allImages.map(({attributes: {url, caption, width, height, alternativeText: alt}}) => 

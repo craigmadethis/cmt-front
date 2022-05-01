@@ -55,7 +55,7 @@ export const GalleryLayout = (props) => {
     {allImages.map(({attributes: {url, caption, width, height, alternativeText: alt}}) => 
       <Link href='' key={url}>
       <a>
-          <LightgalleryItem key={url} src={url} group="page" subHtml={caption} className='aspect-square p-2' className="">
+          <LightgalleryItem src={url} group="page" subHtml={caption} className='aspect-square p-2' >
       {/* <img className="object-contain max-h-[50vh] md:max-h-[40vh] p-1" src={`${url}`} alt={alt}/> */}
       <div className='h-[40vh] aspect-square m-1 hover:opacity-75 relative'>
       <Image className="" src={`${url}`} alt={`${alt}`} layout="fill" width={`${width}`} height={`${height}`} sizes="80vw" objectFit='cover'/>

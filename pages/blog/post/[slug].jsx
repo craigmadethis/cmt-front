@@ -17,9 +17,10 @@ import renderers from '../../../lib/renderers'
 const Post = ({post,categories, socials}) => {
   const {attributes:{title: postTitle, created: postCreated, createdAt: postCreatedAt, description: postDescription, content: postContent, gallery: postGallery, cover: {data: {attributes:  postCover}}} } = post
 
+  const titleString = `${postTitle} | @CRAIGMADETHIS`
   const seo = {
     title: postTitle, description: postDescription,
-    openGraph: {title: postTitle, description: postDescription, type: 'article', article: {publishedTime: postCreated}, images:[{...postCover}]},
+    openGraph: {title: titleString, description: postDescription, type: 'article', article: {publishedTime: postCreated}, images:[{...postCover}]},
   }
 
   const {data: galleryData} = postGallery || {}

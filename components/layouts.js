@@ -3,6 +3,7 @@ import Footer from './footer'
 import PostSidebar from './BlogSidebar'
 import {LightgalleryItem} from "react-lightgallery"
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const SidebarLayout = (props) => {
  return( 
@@ -52,14 +53,16 @@ export const GalleryLayout = (props) => {
 
     <div className='flex flex-col md:flex-row md:flex-wrap justify-center items-center'>
     {allImages.map(({attributes: {url, caption, width, height, alternativeText: alt}}) => 
-          <LightgalleryItem key={url} src={`${url}`} group="page" subHtml={caption} className='aspect-square p-2'>
-      {/* <img className="object-contain max-h-[50vh] md:max-h-[40vh] p-1" src={`${url}`} alt={alt}/> */}
-      <div className='h-[40vh] aspect-square m-1 relative'>
+      <Link href=''>
       <a>
-      <Image className="" src={`${url}`} alt={alt} layout="fill" width={`${width}`} height={`${height}`} sizes="80vw" objectFit='cover'/>
-      </a>
+          <LightgalleryItem key={url} src={url} group="page" subHtml={caption} className='aspect-square p-2' className="">
+      {/* <img className="object-contain max-h-[50vh] md:max-h-[40vh] p-1" src={`${url}`} alt={alt}/> */}
+      <div className='h-[40vh] aspect-square m-1 hover:opacity-75 relative'>
+      <Image className="" src={`${url}`} alt={`${alt}`} layout="fill" width={`${width}`} height={`${height}`} sizes="80vw" objectFit='cover'/>
       </div>
       </LightgalleryItem>
+      </a>
+      </Link>
     )
 
     }

@@ -21,7 +21,7 @@ const PostCard = ({post}) => {
       <Link href='/blog/post/[slug]' as={`/blog/post/${postSlug}`}><a><h1 className='text-h2 font-jost font-semibold hover:text-blue-400 w-full pb-2 '>{postTitle}</h1></a></Link>
     </div>
       <div className='relative aspect-[4/3] w-full max-h-64 mt-2 place-self-center '>
-        <Image src={`${coverUrl}`} layout='fill' objectFit='cover' />
+        <Image src={`${coverUrl}`} layout='fill' objectFit='cover' priority='true'/>
       </div>
       {/* <div className="w-5/6 bg-emerald-400 h-[200px]"> an image </div> */}
     <div>

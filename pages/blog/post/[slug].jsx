@@ -11,61 +11,27 @@ import { getStrapiURL, getStrapiMedia} from '../../../lib/getstrapiurl'
 import InitClient from '../../../lib/client'
 import Link from 'next/link'
 import {NextSeo} from 'next-seo'
+import renderers from '../../../lib/renderers'
 
 
 const Post = ({post,categories, socials}) => {
   const {attributes:{title: postTitle, created: postCreated, createdAt: postCreatedAt, description: postDescription, content: postContent, gallery: postGallery, cover: {data: {attributes:  postCover}}} } = post
 
-  console.log(postCover)
   const seo = {
     title: postTitle, description: postDescription,
     openGraph: {title: postTitle, description: postDescription, type: 'article', article: {publishedTime: postCreated}, images:[{...postCover}]},
   }
+
   const {data: galleryData} = postGallery || {}
   const {attributes: galleryAttributes} = galleryData || {}
   const {title: galleryTitle = '', slug: gallerySlug = ''} = galleryAttributes || {}
 
-  const renderers = {
-    img: (image) =>{ 
-      if(image.title) { 
-        return (
-          <div>
-          <div className='mx-auto w-full md:w-5/6 max-w-6xl aspect-[4/3] relative '>
-          <LightgalleryItem src={image.src} group="page">
-          <a className=''>
-          <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
-          </a>
-          </LightgalleryItem>
-          </div>
-          <p className='w-4/6 text-center'>
-          {image.title}
-          </p>
-          </div>
-        ) 
-      }
-      else {
-        return (
-          <div>
-          <div className='mx-auto w-full md:w-5/6 max-w-6xl aspect-[4/3] relative '>
-          <LightgalleryItem src={image.src} group="page">
-          <a className=''>
-          <Image className="img-responsive" src={image.src} alt={image.alt} layout='fill' objectFit='contain'  quality='50' />
-          </a>
-          </LightgalleryItem>
-          </div>
-          </div>
-        )}
-    }
-  }
-
   const postDate = new Date(postCreated)
-
 
 
   return (
     <>
     <NextSeo 
-    
     {...seo}
     />
     <ProseLayout socials={socials}>

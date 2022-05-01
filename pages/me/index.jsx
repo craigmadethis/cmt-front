@@ -20,7 +20,7 @@ const Me = ({socials, me}) => {
       </ReactMarkdown>
       </div>
       <div className='w-full md:w-1/3 h-96 max-h-fit md:max-h-fit relative my-12'>
-        <Image src={me.attributes.avatar.data.attributes.url} layout='fill' objectFit='contain' />   
+        <Image src={me.attributes.avatar.data.attributes.url} layout='fill' objectFit='contain' sizes='30vw'/>   
       </div>
     </div>
 

@@ -53,7 +53,7 @@ export const GalleryLayout = (props) => {
 
     <div className='flex flex-col md:flex-row md:flex-wrap justify-center items-center'>
     {allImages.map(({attributes: {url, caption, width, height, alternativeText: alt}}) => 
-      <Link href=''>
+      <Link href='' key={url}>
       <a>
           <LightgalleryItem key={url} src={url} group="page" subHtml={caption} className='aspect-square p-2' className="">
       {/* <img className="object-contain max-h-[50vh] md:max-h-[40vh] p-1" src={`${url}`} alt={alt}/> */}

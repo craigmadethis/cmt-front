@@ -11,6 +11,9 @@ function MyApp({ Component, pageProps }) {
     <LightgalleryProvider 
     lightgallerySettings={ { 'download':false } }
     >
+    <Head>
+        <link rel="shortcut icon" href="/static/favicon.ico" />
+    </Head>
     <DefaultSeo {...SEO} />
     <Component {...pageProps} />
     </LightgalleryProvider>

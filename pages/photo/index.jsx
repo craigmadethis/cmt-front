@@ -7,6 +7,7 @@ import {NextSeo} from "next-seo"
 
 const Me = ({gallery, socials}) => {
 
+  console.log(gallery)
   return (
     <>
   <NextSeo title={'Portfolio'} description={'The photography portfolio of @craigmadethis.'}/>

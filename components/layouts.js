@@ -4,7 +4,7 @@ import PostSidebar from './BlogSidebar'
 import {LightgalleryItem} from "react-lightgallery"
 import Image from 'next/image'
 import Link from 'next/link'
-import { buildImageUrl, buildUrl } from 'cloudinary-build-url'
+import blurLoader from '../lib/blurLoader'
 
 export const SidebarLayout = (props) => {
  return( 
@@ -42,24 +42,6 @@ export const GalleryLayout = (props) => {
 
 
   let {attributes: {images: {data: allImages}, title, description}} = props.gallery
-  const cloudUrl = (hash) => {
-    return buildImageUrl(hash, {
-      cloud: {
-        cloudName: 'dwrkp09mb',
-      },
-      transformations: {
-        resize: {
-          type: 'scale',
-          width: 500,
-          height: 500,
-        },
-        effect: {
-          name: 'blur:1000',
-          quality: 25
-        }
-      }
-    })
-  }
   return (
 	<div className='bg-gray-50 min-h-screen flex flex-col min-h-screen justify-between'>
     <Navbar />
@@ -77,7 +59,7 @@ export const GalleryLayout = (props) => {
           <LightgalleryItem src={url} group="page" subHtml={caption} className='aspect-square p-2' >
       {/* <img className="object-contain max-h-[50vh] md:max-h-[40vh] p-1" src={`${url}`} alt={alt}/> */}
       <div className='h-[40vh] aspect-square m-1 hover:opacity-75 relative'>
-      <Image className="" src={`${url}`} alt={`${alt}`} layout="fill"  sizes="80vw" objectFit='cover' placeholder='blur' blurDataURL={cloudUrl(url)}/>
+      <Image className="" src={`${url}`} alt={`${alt}`} layout="fill"  sizes="80vw" objectFit='cover' placeholder='blur' blurDataURL={blurLoader(url)}/>
       </div>
       </LightgalleryItem>
       </a>

@@ -1,6 +1,5 @@
 import {gql} from '@apollo/client'
 import {ProseLayout} from '../../components/layouts'
-import ReactMarkdown from 'react-markdown'
 import {GET_SOCIALS, GET_LINK_PAGE} from '../../lib/queries'
 import InitClient from '../../lib/client'
 import Link from 'next/link'

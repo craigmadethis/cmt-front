@@ -9,7 +9,7 @@ const Me = ({gallery, socials}) => {
 
   return (
     <>
-  <NextSeo title={'Portfolio'} description={'The photography portfolio of @craigmadethis.'}/>
+    <NextSeo title={'Portfolio'} description={'The photography portfolio of @craigmadethis.'}/>
     <GalleryLayout gallery={gallery} socials={socials}/>
     </>
   )

@@ -1,13 +1,8 @@
-import {ApolloClient, InMemoryCache, gql} from '@apollo/client'
-import {useEffect} from 'react'
+import {gql} from '@apollo/client'
 import {ProseLayout} from '../../../components/layouts'
 import ReactMarkdown from 'react-markdown'
 import remarkUnwrapImages from 'remark-unwrap-images'
-import Image from 'next/image'
-import {LightgalleryItem} from "react-lightgallery"
-import client from "../../../lib/client"
 import { POST_BY_SLUG, POST_SLUGS, GET_SOCIALS} from '../../../lib/queries'
-import { getStrapiURL, getStrapiMedia} from '../../../lib/getstrapiurl'
 import InitClient from '../../../lib/client'
 import Link from 'next/link'
 import {NextSeo} from 'next-seo'
@@ -40,23 +35,15 @@ const Post = ({post,categories, socials}) => {
     <h1 className ="text-center mb-2 py-4 col-span-8 mx-auto text-d3 md:text-d2 font-semibold font-jost leading-normal text-blue-400">{postTitle}</h1>
     <h3 className="text-center text-p3 md:text-p2 font-jost font-semibold"><span className="text-gray-900 border-b-4 border-blue-400">{postDate.toLocaleDateString('en-GB')}</span></h3>
     <div className="text-center font-bitter text-gray-900 text-p3 md:text-p2 leading-normal w-5/6  mx-auto py-4">{postDescription}</div>
-
     <div className="markdown my-4">
     <ReactMarkdown components={renderers} transformImageUri={uri => uri.startsWith("http") ? uri : `${uri}` } remarkPlugins={[remarkUnwrapImages]} >
-      {postContent}
+    {postContent}
     </ReactMarkdown>
-
-
     {postGallery && postGallery.data != null ?  (
-
       <div className='col-span-8 md:col-span-6 text-right font-jost font-semibold text-h3'>View the gallery: <Link href={`/galleries/${gallerySlug}`}><a>{galleryTitle}</a></Link></div>
     ): null}
-
-
-
     </div>
     </div>
-
     </ProseLayout>
     </>
   )

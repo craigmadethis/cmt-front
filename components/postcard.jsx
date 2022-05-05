@@ -16,7 +16,7 @@ const PostCard = ({post}) => {
     <div key={postSlug}>
       <Link href='/blog/post/[slug]' as={`/blog/post/${postSlug}`}><a><h1 className='h-24 text-h2 font-jost font-semibold hover:text-blue-400 w-full pb-2 '>{postTitle}</h1></a></Link>
     </div>
-      <div className='relative w-full aspect-w-4 aspect-h-4 mt-2 place-self-center m-6 max-h-[70vh] '>
+      <div className='relative w-full aspect-square mt-2 place-self-center m-6 max-h-[70vh] '>
         <Image src={`${coverUrl}`} layout='fill' objectFit='cover' priority='true' sizes='50vw' placeholder='blur' blurDataURL={blurLoader(coverUrl)}/>
       </div>
       {/* <div className="w-5/6 bg-emerald-400 h-[200px]"> an image </div> */}

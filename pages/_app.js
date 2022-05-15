@@ -31,8 +31,8 @@ function MyApp({ Component, pageProps }) {
         <link rel="shortcut icon" href="/static/favicon.ico" />
     </Head>
     <DefaultSeo {...SEO} />
-  <Script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG}`}></Script>
-  <Script>
+  <Script id="tagman1" async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG}`}></Script>
+  <Script id="tagman2">
     {`
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}

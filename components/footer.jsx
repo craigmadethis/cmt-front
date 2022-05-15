@@ -5,12 +5,12 @@ const Footer = ({socials}) => {
 
   return (
     <footer className=" bg-gray-900 text-gray-50 md:flex flex-row md:flex-col font-bitter">
-    <h1 className="md:w-1/2 mx-auto text-center text-h3 font-jost font-semibold py-6 ">@CRAIGMADETHIS</h1>
+    <p className="md:w-1/2 mx-auto text-center text-h3 font-jost font-semibold py-6 ">@CRAIGMADETHIS</p>
     
     <div className='md:w-1/2 mx-auto md:flex md:justify-around'>
 
     <div className='md:w-1/2 text-center md:text-left mx-4 mb-4 md:mb-0'>
-    <h1 className='pb-2 font-jost font-semibold'>Site:</h1>
+    <h2 className='pb-2 font-jost font-semibold'>Site:</h2>
     <ul >
     <li className='hover:text-blue-400'><Link href='/blog' as='/blog'><a>blog</a></Link></li>
     <li className='hover:text-blue-400'><Link href='/me' as='/me'><a>me</a></Link></li>
@@ -23,7 +23,7 @@ const Footer = ({socials}) => {
 
     {socials ? (
     <div className=' text-center md:text-right mx-4'>
-    <h1 className = 'pb-2 font-jost font-semibold'> Follow me: </h1>
+    <h2 className = 'pb-2 font-jost font-semibold'> Follow me: </h2>
     <ul>
     {socials.map(social => <Link href={social.url} as={social.url} key={social.title}><a><li className='hover:text-blue-400'  >{social.title}</li></a></Link>)}
     </ul>
@@ -33,7 +33,7 @@ const Footer = ({socials}) => {
 
 
     </div>
-    <h1 className="md:w-1/2 mx-auto text-center text-p3 font-jost font-semibold py-6">© Craig Shewry 2022</h1>
+    <p className="md:w-1/2 mx-auto text-center text-p3 font-jost font-semibold py-6">© Craig Shewry 2022</p>
     </footer>
 
   )

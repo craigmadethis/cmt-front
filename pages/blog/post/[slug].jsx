@@ -14,7 +14,8 @@ const Post = ({post,categories, socials}) => {
 
   const titleString = `${postTitle} | @CRAIGMADETHIS`
   const seo = {
-    title: postTitle, description: postDescription,
+    title: postTitle, description: postDescription, 
+    canonical: 'https://craigmadethis.com/blog/',
     openGraph: {title: titleString, description: postDescription, type: 'article', article: {publishedTime: postCreated}, images:[{...postCover}]},
   }
 

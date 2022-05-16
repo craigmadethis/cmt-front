@@ -17,8 +17,14 @@ module.exports = {
     ]
   },
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ["en-GB"],
+    defaultLocale: "en-GB",
+    domains: [
+      {
+        domain: 'craigmadethis.com',
+        defaultLocale: 'en-GB',
+      },
+    ],
   },
 };
 

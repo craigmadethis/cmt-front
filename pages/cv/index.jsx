@@ -3,12 +3,18 @@ import {ProseLayout} from '../../components/layouts'
 import ReactMarkdown from 'react-markdown'
 import {GET_SOCIALS} from '../../lib/queries'
 import InitClient from '../../lib/client'
+import Head from 'next/head'
 
 const CV = ({cvData, socials}) => {
 
   const {attributes: {content: cvContent, description: cvDescription}} = cvData
   
   return (
+    <>
+    
+    <Head>
+    <meta name="robots" content="noindex,nofollow"/>
+    </Head>
     <ProseLayout socials={socials}>
     <div className='col-span-8 md:col-span-6 md:col-start-2'>
     <h1 className ="text-center mb-2 py-4 col-span-8 mx-auto text-d3 md:text-d2 font-semibold font-jost leading-normal text-blue-400">CV</h1>
@@ -21,6 +27,7 @@ const CV = ({cvData, socials}) => {
     </div>
     
     </ProseLayout>
+    </>
   )
 }
 

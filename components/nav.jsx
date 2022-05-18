@@ -5,9 +5,9 @@ function Navbar() {
     <div className="sm:w-1/3">
     <div className="flex flex-col text-h2 font-semibold font-jost">
     <ul>
-    <li className="hover:text-orange-400" ><Link href='/photo'>photo</Link></li>
-    <li className="hover:text-orange-400"> <Link className="hover:text-orange-400" href='/blog/1'>blog</Link></li>
-    <li className="hover:text-orange-400"> <Link className="hover:text-orange-400" href='/me'>me</Link></li>
+    <li className="hover:text-orange-400 pb-4 md:pb-2" ><Link href='/photo'>photo</Link></li>
+    <li className="hover:text-orange-400 pb-4 md:pb-2"> <Link className="hover:text-orange-400" href='/blog/1'>blog</Link></li>
+    <li className="hover:text-orange-400 pb-4 md:pb-2"> <Link className="hover:text-orange-400" href='/me'>me</Link></li>
     </ul>
     </div>
     </div>

@@ -25,7 +25,7 @@ const Footer = ({socials}) => {
     <div className=' text-center md:text-right mx-4 text-p2'>
     <h2 className = 'pb-4 font-jost font-semibold text-p1'> Follow me: </h2>
     <ul>
-    {socials.map(social => <li className='hover:text-blue-400 pb-4'><Link href={social.url} as={social.url} key={social.title}><a className=''  >{social.title}</a></Link></li>)}
+    {socials.map(social => <li className='hover:text-blue-400 pb-4' key={social.title}><Link href={social.url} as={social.url} key={social.title}><a className=''  >{social.title}</a></Link></li>)}
     </ul>
 
     </div>

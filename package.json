@@ -19,7 +19,7 @@
     "apollo-boost": "^0.4.9",
     "cloudinary-build-url": "^0.2.4",
     "graphql": "^16.3.0",
-    "next": "12.1.6",
+    "next": "12.0.9",
     "next-apollo": "^5.0.8",
     "next-seo": "^5.4.0",
     "postcss-import": "^14.0.2",

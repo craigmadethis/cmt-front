@@ -41,7 +41,7 @@ const Post = ({post,categories, socials}) => {
     {postContent}
     </ReactMarkdown>
     {postGallery && postGallery.data != null ?  (
-      <div className='col-span-8 md:col-span-6 text-right font-jost font-semibold text-h3'>View the gallery: <Link href={`/galleries/${gallerySlug}`} passHref><a>{galleryTitle}</a></Link></div>
+      <div className='col-span-8 md:col-span-6 text-right font-jost font-semibold text-h3 pt-6'>View the gallery: <Link href={`/galleries/${gallerySlug}`} passHref><a>{galleryTitle}</a></Link></div>
     ): null}
     </div>
     </div>

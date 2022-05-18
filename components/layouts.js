@@ -55,11 +55,11 @@ export const GalleryLayout = (props) => {
     <div className='flex flex-col md:flex-row md:flex-wrap justify-center items-center'>
     {allImages.map(({attributes: {url, caption, width, height, alternativeText: alt}}) => 
       <Link href='' key={url}>
-      <a>
+          <a className='' href="javascript:;">
           <LightgalleryItem src={url} group="page" subHtml={caption} className='aspect-square p-2' >
       {/* <img className="object-contain max-h-[50vh] md:max-h-[40vh] p-1" src={`${url}`} alt={alt}/> */}
       <div className='h-[40vh] aspect-square m-1 hover:opacity-75 relative'>
-      <Image className="" src={`${url}`} alt={`${alt}`} layout="fill"  sizes="80vw" objectFit='cover' placeholder='blur' blurDataURL={blurLoader(url)}/>
+      <Image className="" src={`${url}`} alt={`${alt}`} layout="fill"  sizes="100vw" objectFit='cover' placeholder='blur' blurDataURL={blurLoader(url)}/>
       </div>
       </LightgalleryItem>
       </a>
@@ -68,26 +68,6 @@ export const GalleryLayout = (props) => {
 
     }
     </div>
-
-
-
-
-          {/* <div className='masonry-1-col md:masonry-2-col'> */}
-    {/* {allImages.map(({attributes: {url, caption, alternativeText: alt}}) => */} 
-          {/*   <div className='mx-auto w-full my-4 aspect-[4/3] relative break-inside-avoid ' key={url}> */}
-          {/*     <LightgalleryItem src={`${url}`} group="page" subHtml={caption}> */}
-      {/* <a> */}
-          {/*         <Image className="img-responsive" src={`${url}`} alt={alt} layout='fill' objectFit='contain'  quality='50' /> */}
-      {/* </a> */}
-          {/*         {/1* <img src={`http://localhost:1337${url}`} alt={alt} /> *1/} */}
-          {/*     </LightgalleryItem> */}
-          {/*   </div> */}
-      {/* ) */}
-    {/* } */}
-          {/* </div> */}
-
-
-
 
     </div>
 
